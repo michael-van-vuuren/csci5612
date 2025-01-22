@@ -1,6 +1,5 @@
 # Configuration
-baseURL: "https://example.com/"
-title: "Hextra"
+title: Machine Learning
 
 enableRobotsTXT: true
 enableGitInfo: true
@@ -65,52 +64,51 @@ enableInlineShortcodes: true
 
 menu:
   main:
-    - identifier: documentation
-      name: Documentation
-      pageRef: /docs
+    - name: Introduction
+      pageRef: /introduction
       weight: 1
-    - identifier: showcase
-      name: Showcase
-      pageRef: /showcase
+    - name: EDA
+      pageRef: /eda
       weight: 2
-    - identifier: blog
-      name: Blog
-      pageRef: /blog
+    - name: Models
+      pageRef: /docs
       weight: 3
-    - identifier: about
-      name: About
-      pageRef: /about
+    - name: Conclusion
+      pageRef: /conclusion
       weight: 4
-    - name: Search
+    - name: About
+      pageRef: /about
       weight: 5
+    - name: Search
+      weight: 6
       params:
         type: search
     - name: GitHub
-      weight: 6
-      url: "https://github.com/imfing/hextra"
+      weight: 7
+      url: "https://github.com/imfing/hextra-starter-template"
       params:
         icon: github
 
-  sidebar:
-    - identifier: more
-      name: More
-      params:
-        type: separator
-      weight: 1
-    - identifier: about
-      name: "About"
-      pageRef: "/about"
-      weight: 2
-    - identifier: hugoDocs
-      name: "Hugo Docs ↗"
-      url: "https://gohugo.io/documentation/"
-      weight: 3
+  # sidebar:
+  #   - identifier: more
+  #     name: More
+  #     params:
+  #       type: separator
+  #     weight: 1
+  #   - identifier: about
+  #     name: "About"
+  #     pageRef: "/about"
+  #     weight: 2
+  #   - identifier: hugoDocs
+  #     name: "Hugo Docs ↗"
+  #     url: "https://gohugo.io/documentation/"
+  #     weight: 3
 
 params:
   description: Modern, responsive, batteries-included Hugo theme for creating beautiful static websites.
 
   navbar:
-    displayTitle: true
+    displayTitle: false
     displayLogo: true
     logo:
       path: images/logo.svg
@@ -132,7 +130,7 @@ params:
   footer:
     enable: true
     displayCopyright: true
-    displayPoweredBy: true
+    displayPoweredBy: false
     width: normal
 
   displayUpdatedDate: true
@@ -152,7 +150,7 @@ params:
       tokenize: forward
 
   editURL:
-    enable: true
+    enable: false
     base: "https://github.com/imfing/hextra/edit/main/exampleSite/content"
 
   blog:
