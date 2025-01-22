@@ -1,0 +1,10 @@
+:root {
+  --primary-hue: 213deg;
+  --primary-saturation: 90%;
+  --primary-lightness: 70%;
+}
+
+.hextra-code-block {
+  box-shadow: 1px 1px 2px lightgray;
+  border-radius: 12px;
+}
