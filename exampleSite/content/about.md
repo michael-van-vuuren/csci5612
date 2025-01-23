@@ -1,6 +1,6 @@
 ---
-title: About
+title: About Me
 type: about
 ---
 
-This is the about page.
+This page is about me.

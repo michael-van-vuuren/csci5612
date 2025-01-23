@@ -76,7 +76,7 @@ menu:
     - name: Conclusion
       pageRef: /conclusion
       weight: 4
-    - name: About
+    - name: About Me
       pageRef: /about
       weight: 5
     - name: Search
@@ -85,7 +85,7 @@ menu:
         type: search
     - name: GitHub
       weight: 7
-      url: "https://github.com/imfing/hextra-starter-template"
+      url: "https://github.com/michael-van-vuuren"
       params:
         icon: github
 

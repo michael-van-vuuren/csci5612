@@ -1,11 +1,11 @@
 ---
 title: Models
-next: first-page
+next: docs/pca
 ---
 
-This is a demo of the theme's documentation layout.
+This is where I will put my models and results.
 
-## Hello, World!
+## Introduction
 
 ```go {filename="main.go"}
 package main
