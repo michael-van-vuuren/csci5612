@@ -5,6 +5,6 @@
 }
 
 .hextra-code-block {
-  box-shadow: 1px 1px 2px lightgray;
+  box-shadow: 1px 1px 2px #22222222, 1px 5px 5px #22222211;
   border-radius: 12px;
 }
