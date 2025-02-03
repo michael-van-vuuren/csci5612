@@ -67,11 +67,11 @@ menu:
     - name: Introduction
       pageRef: /introduction
       weight: 1
-    - name: EDA
+    - name: Data Prep/EDA
       pageRef: /eda
       weight: 2
     - name: Models
-      pageRef: /docs
+      pageRef: /models
       weight: 3
     - name: Conclusion
       pageRef: /conclusion
