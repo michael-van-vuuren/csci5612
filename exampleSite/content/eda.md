@@ -27,7 +27,7 @@ https://www.kaggle.com/datasets/nelgiriyewithana/most-streamed-spotify-songs-202
 - The ISRC registry was needed to translate ISRC codes to territories.
 
 >[!TIP]
-> Use the table of contents in the right sidebar for easy navigation {{< icon "arrow-sm-right" >}}
+>Use the table of contents in the right sidebar for easy navigation {{< icon "arrow-sm-right" >}}
 
 ## API Examples & Interfacing
 
@@ -38,9 +38,9 @@ https://www.kaggle.com/datasets/nelgiriyewithana/most-streamed-spotify-songs-202
 **Endpoint:**\
 ```GET https://api.spotify.com/v1/search?q=isrc:{isrc}&type=track&limit=1```
 
-> [!IMPORTANT]
-> Also requires authorization token in header. See:\
-> https://developer.spotify.com/documentation/web-api/tutorials/client-credentials-flow
+>[!IMPORTANT]
+>Also requires authorization token in header. See:\
+>https://developer.spotify.com/documentation/web-api/tutorials/client-credentials-flow
 
 {{% details title="Example Request" closed="true" %}}
 
@@ -339,13 +339,13 @@ These modules are located under `src/api/spotify/` and `src/api/musicbrainz/` un
 
 The base dataset downloaded from Kaggle before any modification is found in `data/Most_Streamed_Spotify_Songs_2024_utf8` under the project root. 
 
-Here is a snippet of that dataset:
+Snippet of raw dataset:
 
 ![1](images/1.png)
 
 >[!NOTE]
-> Source code, Jupyter notebooks, and data are stored in this repository:\
-> https://github.com/michael-van-vuuren/csci5612-workspace
+>Source code, Jupyter notebooks, and data are stored in this repository:\
+>https://github.com/michael-van-vuuren/csci5612-workspace
 
 ### Imports
 
@@ -377,7 +377,7 @@ After unsuccessfully trying various decoding methods, Spotify's API was used to 
 
 #### 1. Using the Spotify API to correct corrupted rows
 
-Here, we find the corrupted rows in the dataset, and use the Spotify API to search for the correct values. The results are stored in accepted and rejected dataframes, where accepted holds all corrected rows (as well rows that were correct to begin with), and rejected holds rows that could not be corrected.
+The task is to find the corrupted rows in the dataset, and use the Spotify API to search for the correct values. The results are stored in accepted and rejected dataframes, where accepted holds all corrected rows (as well rows that were correct to begin with), and rejected holds rows that could not be corrected.
 
 The module to interact with Spotify API has already been imported as `spt`.
 
@@ -431,7 +431,7 @@ There are only 22 corrupted rows that could not be corrected. Given the number o
 
 #### 2. Joining the base dataframe and accepted dataframe
 
-Now the accepted dataframe and base dataframe can be joined. To do this, an inner merge is appropriate, because accepted has less rows than the base dataframe, and we want to drop rows that are in the rejected dataframe. We should expect to get `len(accepted) = 4578` rows after merging.
+Now the accepted dataframe and base dataframe can be joined. To do this, an inner merge is appropriate, because accepted has less rows than the base dataframe, and rows that in the rejected dataframe should be dropped. There should be `len(accepted) = 4578` rows after merging.
 
 ```python {filename=""}
 # drop info columns from base dataframe for easy merge
@@ -444,7 +444,7 @@ len(base_not_corrupt) # outputs 4582
 
 #### 3. Removing duplicate rows
 
-We get 4 additional rows. Why? Lets check for duplicated rows:
+There are 4 additional rows. Why? Notice there are duplicated rows:
 
 ```python {filename=""}
 base_not_corrupt[base_not_corrupt['ISRC'].duplicated()]
@@ -452,7 +452,7 @@ base_not_corrupt[base_not_corrupt['ISRC'].duplicated()]
 
 ![4](images/4.png)
 
-We can see we have 4 duplicated rows. Lets remove these:
+Remove the 4 duplicated rows:
 
 ```python {filename=""}
 base_not_corrupt = base_not_corrupt.drop_duplicates(subset=['ISRC'], keep='first')
@@ -461,7 +461,7 @@ len(base_not_corrupt) # outputs 4576 (lost an additional 2 rows because the acce
 
 #### 4. Reordering the columns
 
-Finally, lets move `Track`, `Album Name`, and `Artist` back to the first beginning of the dataframe, along with `ISRC`.
+Finally, `Track`, `Album Name`, and `Artist` should be moved back to the beginning of the dataframe, along with `ISRC`.
 
 ```python {filename=""}
 col_to_move = ['ISRC', 'Track', 'Album Name', 'Artist']
@@ -474,11 +474,11 @@ base_not_corrupt.head()
 
 ![5](images/5.png)
 
-We can see that index **30** and **41** are no longer corrupted.
+After using the Spotify API to fix the corrupted rows, index **30** and **41** are no longer corrupted.
 
 ### Gathering Additional Features
 
-We have a fairly comprehensive dataset in terms of metadata about each track (release date, popularity across platforms, etc.). However, we can gather additional data about each track using the MusicBrainz API and other methods. Last.fm and other sources will also be used later to gather more data; this is just a start.
+The current dataset is fairly comprehensive in terms of metadata about each track (release date, popularity across platforms, etc.). However, additional data can be collected about each track using the MusicBrainz API and other methods. Last.fm and other sources will also be used later to gather more data; this is just a start.
 
 #### 1. Gathering more data with MusicBrainz API
 
@@ -499,7 +499,7 @@ mb.search_isrc('USUM72404101')
 # outputs {'Length': 186.0, 'Releases': 29, 'Genres': ['pop'], 'ISRC': 'USUM72404101'}
 ```
 
-Lets use `mb` to search the MusicBrainz database for every ISRC in order to extract the desired features:
+Use `mb` to search the MusicBrainz database for every ISRC in order to extract the desired features:
 
 ```python {filename=""}
 import pandas as pd
@@ -541,7 +541,7 @@ The result of the function is a dataframe with each of the additional features:
 
 ![7](images/7.png)
 
-We have some missing values in the augmented dataset. To remedy each:
+There are some missing values in the augmented dataset. To remedy each:
 
 1. `Length` - Impute using median, since distribution has slight right skew.
 
@@ -574,11 +574,11 @@ isrc_translations.head()
 
 ![9](images/9.png)
 
-We are only interested in column 1 and 3. Drop the rest and rename column 1 and 3.
+Only column 1 and 3 provide useful information. Drop the rest and rename column 1 and 3.
 
 ![10](images/10.png)
 
-Now we can use the translations to create a new `Registration Country` column in our main dataset.
+Now the translations can be used to create a new `Registration Country` column in the main dataset.
 
 ```python {filename=""}
 # replace 'Worldwide' with 'United States' for visualization purposes
@@ -600,7 +600,7 @@ base_augmented['Registration Country'].unique()
 
 ### Cleaning Primary Dataset
 
-This section focuses on converting data types and handling missing values. The missing values in the dataset can be visualized:
+This section focuses on converting data types and handling missing values. The missing values in the dataset can be inspected visually:
 
 ```python {filename=""}
 plt.figure(figsize=(20,8), dpi=150)
@@ -618,7 +618,7 @@ Before imputing missing values, numerical object types must be converted to nume
 
 **Objects to integers:**
 
-The reason there are so many objects is because integers have been stored with commas as strings. We can remedy this by removing the commas, then converting those with values to integers. Those with null values will be converted to -1, so that we can impute them later.
+The reason there are so many objects is because integers have been stored with commas as strings. To remedy this, remove the commas, then convert non-null values to integers. Null values will be converted to -1, so that they can be imputed later.
 
 ```python {filename=""}
 cols_to_convert = ['All Time Rank', 
@@ -681,7 +681,7 @@ These songs are also missing streaming information, so they are dropped.
 
 **Columns with many missing values:**
 
-From the heatmap above, several columns have the majority of their values missing. In these cases, it is best to discard the columns since we have many other more complete columns.
+From the heatmap above, several columns have the majority of their values missing. In these cases, it is best to discard the columns since there are many other more complete columns.
 
 ```python {filename=""}
 base_v1 = base_v1.drop(columns=['SiriusXM Spins', 'Soundcloud Streams', 'TIDAL Popularity'])
@@ -708,7 +708,7 @@ All the missing values have been handled (might come back and improve methodolog
 
 ### Creating Target Variable
 
-Now we should create a target variable (target variable will vary depending on the model, but this will serve as the main target variable).
+Now it is time to determine/create a target variable (target variable will vary depending on the model, but this will serve as the main target variable).
 
 Since many of the columns in the dataset are about streaming numbers and popularity, the target variable should not be something like predicting Spotify streams, because that lead to a circular prediction model. Instead, a variable that represents the probability of a song being included in a playlist will be the target variable. Along with this variable will be a binned version, i.e. low and high probability, for use on classification models.
 
@@ -718,7 +718,7 @@ base_v2.columns
 
 ![19](images/19.png)
 
-To create the target variable of playlist probability, we can combine the columns involving playlist counts and reaches into a probability as follows:
+To create the target variable of playlist probability, columns involving playlist counts and reaches can be combined and transformed into a probability as follows:
 
 $$ P(\text{track being included in a playlist}) =$$
 $$\sigma\left(\left(\alpha\sum_i \frac{\text{Playlist Count}_i}{max(\text{Playlist Count}_i)} + \beta\sum_i \frac{\text{Playlist Reach}_i}{max(\text{Playlist Reach}_i)}\right)^{0.5}\right)$$
@@ -730,7 +730,7 @@ where
 3. $\alpha$ and $\beta$ are used to tune the weights of count and reach on the score
 4. Square root of weighted sum is taken to correct heavy right skew
 
-This works okay for now, but might be tweaked before training any models.
+This works okay for now, but might be tweaked before training any models. Here is the distribution:
 
 ```python {filename=""}
 import numpy as np
@@ -769,7 +769,7 @@ sns.boxplot(x=df_norm['Playlist Probability'])
 
 ![21](images/21.png)
 
-We can discretize `Playlist Probability` into two values: 
+Discretize `Playlist Probability` into two values: 
 
 1. 0 for the lower 50%
 2. 1 for the upper 50%
@@ -781,7 +781,11 @@ median_probability
 df_norm['High Playlist Probability'] = np.where(df_norm['Playlist Probability'] >= median_probability, 1, 0)
 ```
 
-Now that we have a target variable, we drop the playlist columns from the dataset (they are still saved in another CSV if needed later). We also drop `Playlist Score` and `Power Playlist Score` for now.
+Before saving the dataset along with the new target variable, drop the playlist columns from the dataset (they are still saved in another CSV if needed later). Also drop `Playlist Score` and `Power Playlist Score` for now.
+
+Snippet of clean dataset:
+
+![22](images/22.png)
 
 ## Exploratory Data Analysis (EDA)
 

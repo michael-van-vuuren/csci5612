@@ -1,17 +1,14 @@
 ---
-title: Machine Learning
+title: CSCI 5612 Semester Project
 toc: false
 ---
 
-This is the landing page.
-
-## Explore
+## Module 1 Project Assignment
 
 {{< cards >}}
-  {{< card link="docs" title="Docs" icon="book-open" >}}
-  {{< card link="about" title="About" icon="user" >}}
+  {{< card link="introduction" title="Introduction" icon="book-open" subtitle="Visit here for an introduction to the project topic, research questions, and visualizations." >}}
+  {{< card link="eda" title="Data Prep/EDA" icon="clipboard" subtitle="Visit here for data integration, cleaning, and exploration." >}}
 {{< /cards >}}
 
-## Documentation
-
-For more information, visit [Hextra](https://imfing.github.io/hextra).
+>[!TIP]
+>Use the tabs at the top of the website to navigate between sections.
