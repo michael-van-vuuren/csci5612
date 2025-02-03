@@ -57,13 +57,65 @@ This project builds upon these studies by integrating streaming statistics, soci
 
 ## Visualizations
 
-1. 
-2. 
-3. 
-4. 
-5. 
-6. 
-7. 
-8. 
-9. 
-10. 
+>[!NOTE]
+>To see how these visualizations were created, visit [here](https://michael-van-vuuren.github.io/csci5612/eda/#exploratory-data-analysis-eda).
+
+**1. Number of Track Registrations by Country** 
+
+The dataset contains registration country information for each of the tracks, which approximitely indicates the region of the artist who produced the track. A map showing how many tracks are registered in each country is useful to get an idea of where the artists of the most popular songs are located and how generalizable to decisions guided by the data are. Based on this, more data can be gathered for countries that are lacking in registration counts.
+
+![25](images/25.png)
+
+**2. Distributions of Playlist Probability Scores by Days Since Release**
+
+Understanding how release date affects the likelihood of a song being included in a playlist is important. From the visualization below, it is clear that older songs have a greater likelihood of being included in playlists.
+
+![26](images/26.png)
+
+**3. Streaming and Social Media Song Platform Popularity**
+
+The pie charts below show which platforms generate the most streams and views for all the songs in the dataset. In terms of streaming, Spotify dominates in total streams. In terms of social media, TikTok dominates in total views.
+
+![27](images/27.png)
+
+**4. Playlist Probability vs Song Length**
+
+Understanding how the length of a song affects its playlist-worthiness is useful. From the scatterplot below, it seems that there is a possible positive correlation between playlist-worthiness and song length
+
+![28](images/28.png)
+
+**5. Correlations Between Streaming and Social Media Metrics**
+
+It is important to be aware of how different features in the dataset correlate with each other. Highly correlated features can be dropped so as to leave a single feature to lower dimensionality, and weakly correlated features might provide useful information when used together. The pairplot below was log-transformed because the distributions for each feature had heavy right skews. By transforming the data, it becomes easier to see the relationships between each feature, since they are more centered. Certain features like `Spotify Streams` and `Shazam Counts` appear highly correlated; others are less so. The vertical and horizontal lines visible in each plot are a result of the imputation from earlier in which missing values of a feature were replaced by the feature's median.  
+
+![29](images/29.png)
+
+**6. Correlation Amounts Between Streaming and Social Media Metrics**
+
+This heatmap is supplemental to the pairplot above. It provides correlation scores for each pair of metrics. Pairs that intersect at darker squares have greater correlations. 
+
+![31](images/31.png)
+
+**7. How Playlist Probability Changes Based on Number of TikTok Posts**
+
+This visualization identifies how the number of TikTok posts that include a song affects its probability of being included in a playlist. From the boxenplots below, the extent to which TikTok popularity affects playlist-worthiness is clear: More posts means a higher value and variance in playlist probability.
+
+![30](images/30.png)
+
+**8. Playlist Probability by Release Year**
+
+The line plot below shows that older songs are indeed more likely to be included in playlists. 
+
+![32](images/32.png)
+
+**9. The Most Popular Artists**
+
+The visualization below summarizes the top 20 most popular artists across streaming and social media platforms. Some of the results and surprising, while others are expected.
+
+![33](images/33.png)
+
+**10. Genre Word Cloud**
+
+The most common genres are visible in this word cloud. It appears that most of the songs are either hip hop, electronic, pop, and pop rock. This makes sense because these genres are easy to get into and are popular. 
+
+![34](images/34.png)

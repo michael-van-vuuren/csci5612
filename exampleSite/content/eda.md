@@ -1,5 +1,5 @@
 ---
-title: Exploratory Data Analysis
+title: Data Preparation & Exploratory Data Analysis (EDA)
 type: eda
 math: true
 ---
@@ -781,7 +781,7 @@ median_probability
 df_norm['High Playlist Probability'] = np.where(df_norm['Playlist Probability'] >= median_probability, 1, 0)
 ```
 
-Before saving the dataset along with the new target variable, drop the playlist columns from the dataset (they are still saved in another CSV if needed later). Also drop `Playlist Score` and `Power Playlist Score` for now.
+Before saving the dataset along with the new target variable, drop the playlist columns from the dataset (they are still saved in another CSV if needed later). Also drop `Playlist Score` and `Power Playlist Score` for now. The cleaned dataset is stored in `data/base_v3.csv` under the project root.
 
 Snippet of clean dataset:
 
@@ -789,13 +789,298 @@ Snippet of clean dataset:
 
 ## Exploratory Data Analysis (EDA)
 
-1. 
-2. 
-3. 
-4. 
-5. 
-6. 
-7. 
-8. 
-9. 
-10. 
+>[!NOTE]
+>The EDA showcased in this section was performed in `notebooks/eda.ipynb` under the project root. 
+
+**1. Number of Track Registrations by Country** 
+
+The dataset contains registration country information for each of the tracks, which approximitely indicates the region of the artist who produced the track. A map showing how many tracks are registered in each country is useful to get an idea of where the artists of the most popular songs are located and how generalizable to decisions guided by the data are. Based on this, more data can be gathered for countries that are lacking in registration counts.
+
+```python {filename=""}
+import numpy as np
+
+# count number of rows with same countries
+countries = df['Registration Country'].value_counts().reset_index()
+countries.columns = ['Registration Country', 'Count']
+countries['Log Count'] = np.log(countries['Count'])
+countries.head()
+```
+
+![24](images/24.png)
+
+```python {filename=""}
+import plotly.express as px
+
+fig = px.choropleth(
+    countries, 
+    locations='Registration Country',
+    locationmode='country names',
+    color='Log Count',  
+    color_continuous_scale='Emrld',  
+    title='Popular Tracks by Registration Country',
+    labels={'Count': 'ln(Track Count)'}
+)
+
+# remove exterior box and ocean edges
+fig.update_layout(
+    geo=dict(
+        showframe=False,
+        showcoastlines=False
+    )
+)
+
+fig.show()
+```
+
+![25](images/25.png)
+
+**2. Distributions of Playlist Probability Scores by Days Since Release**
+
+Understanding how release date affects the likelihood of a song being included in a playlist is important. From the visualization below, it is clear that older songs have a greater likelihood of being included in playlists.
+
+```python {filename=""}
+# convert release date to time data type
+df['Release Date'] = pd.to_datetime(df['Release Date'])
+
+# calculate days since release date
+days_since = pd.DataFrame()
+days_since['Days Since Release'] = (pd.to_datetime('today') - df['Release Date']).dt.days
+
+# create bins for days since release date
+bins = [365*0.5, 365*2, 365*3, 365*5, days_since['Days Since Release'].max()]
+labels = ['1-2 years', '2-3 years', '3-5 years', '5+ years']
+days_since['Release Date Binned'] = pd.cut(days_since['Days Since Release'], bins=bins, labels=labels, right=False)
+
+days_since['Playlist Probability'] = df['Playlist Probability']
+
+plt.figure(figsize=(10, 6))
+sns.violinplot(x='Release Date Binned', y='Playlist Probability', data=days_since, palette='mako_r')
+plt.title('Distribution of Playlist Probability Scores by Days Since Release')
+plt.xlabel('Days Since Release')
+plt.ylabel('Playlist Probability')
+plt.show()
+```
+
+![26](images/26.png)
+
+**3. Streaming and Social Media Song Platform Popularity**
+
+The pie charts below show which platforms generate the most streams and views for all the songs in the dataset. In terms of streaming, Spotify dominates in total streams. In terms of social media, TikTok dominates in total views.
+
+```python {filename=""}
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# streaming platforms
+platform_columns_1 = ['Spotify Streams', 'Pandora Streams']
+
+# social media platforms
+platform_columns_2 = ['YouTube Views', 'TikTok Views']
+
+# count total streams and views on each platform
+totals_1 = df[platform_columns_1].sum()
+totals_2 = df[platform_columns_2].sum()
+
+fig, axes = plt.subplots(1, 2, figsize=(16, 8))
+
+axes[0].pie(totals_1, labels=totals_1.index, autopct='%1.1f%%', startangle=140, 
+            colors=sns.color_palette('Paired', len(totals_1)), 
+            wedgeprops={'edgecolor': 'black'})
+axes[0].set_title('Streaming Platforms Total Streams', fontsize=20, fontweight='bold')
+axes[0].axis('equal')
+for text in axes[0].texts:
+    text.set_fontsize(14)
+
+axes[1].pie(totals_2, labels=totals_2.index, autopct='%1.1f%%', startangle=140, 
+            colors=sns.color_palette('Paired', len(totals_2)),
+            wedgeprops={'edgecolor': 'black'})
+axes[1].set_title('Social Media Total Views', fontsize=20, fontweight='bold')
+axes[1].axis('equal')
+for text in axes[1].texts:
+    text.set_fontsize(14)
+
+plt.subplots_adjust(wspace=1)
+plt.tight_layout()
+plt.show()
+```
+
+![27](images/27.png)
+
+**4. Playlist Probability vs Song Length**
+
+Understanding how the length of a song affects its playlist-worthiness is useful. From the scatterplot below, it seems that there is a possible positive correlation between playlist-worthiness and song length
+
+```python {filename=""}
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 6))
+sns.scatterplot(data=df, x='Length', y='Playlist Probability', color='lightgreen', alpha=0.6, linewidth=0, s=15)
+
+# regression line
+sns.regplot(data=df, x='Length', y='Playlist Probability', scatter=False, color='black')
+
+plt.title('Playlist Probability vs Song Length')
+plt.xlabel('Length (sec)')
+plt.ylabel('Playlist Probability')
+plt.show()
+```
+
+![28](images/28.png)
+
+**5. Correlations Between Streaming and Social Media Metrics**
+
+It is important to be aware of how different features in the dataset correlate with each other. Highly correlated features can be dropped so as to leave a single feature to lower dimensionality, and weakly correlated features might provide useful information when used together. The pairplot below was log-transformed because the distributions for each feature had heavy right skews. By transforming the data, it becomes easier to see the relationships between each feature, since they are more centered. Certain features like `Spotify Streams` and `Shazam Counts` appear highly correlated; others are less so. The vertical and horizontal lines visible in each plot are a result of the imputation from earlier in which missing values of a feature were replaced by the feature's median.  
+
+```python {filename=""}
+# columns to transform
+columns = ['Spotify Streams', 'YouTube Views', 'TikTok Posts', 'AirPlay Spins', 'Pandora Streams', 'Shazam Counts']
+
+# apply log transformation
+df_log_transformed = df[columns].apply(lambda x: np.log1p(x))
+
+# pairplot
+sns.pairplot(df_log_transformed, diag_kind='kde', 
+             plot_kws={'alpha': 0.6, 's': 15, 'color': 'lightgreen'},
+             diag_kws={'alpha': 0.2, 'color': 'gray'}
+            )
+
+plt.suptitle('Pairplot of Transformed Streaming and Social Media Metrics (Log Scale)', y=1.02, fontsize=20, fontweight='bold')
+plt.show()
+```
+
+![29](images/29.png)
+
+**6. Correlation Amounts Between Streaming and Social Media Metrics**
+
+This heatmap is supplemental to the pairplot above. It provides correlation scores for each pair of metrics. Pairs that intersect at darker squares have greater correlations. 
+
+```python {filename=""}
+# calculate correlation matrix for selected columns
+correlation_matrix = df[columns].corr()
+
+# heatmap
+plt.figure(figsize=(10, 6))
+sns.heatmap(correlation_matrix, annot=True, cmap='mako_r', vmin=-1, vmax=1, cbar=True)
+plt.title('Correlation Heatmap of Streaming and Social Media Metrics', fontsize=16)
+plt.show()
+```
+
+![31](images/31.png)
+
+**7. How Playlist Probability Changes Based on Number of TikTok Posts**
+
+This visualization identifies how the number of TikTok posts that include a song affects its probability of being included in a playlist. From the boxenplots below, the extent to which TikTok popularity affects playlist-worthiness is clear: More posts means a higher value and variance in playlist probability.
+
+```python {filename=""}
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# 5 bins for TikTok post amounts
+bin_labels = ['0-1000 posts', '1001-5000 posts', '5001-10000 posts', '10001-50000 posts', '50000+ posts']
+bin_edges = [0, 1000, 5000, 10000, 50000, df['TikTok Posts'].max()]
+
+tiktok_posts = pd.DataFrame()
+
+tiktok_posts['TikTok Post Bins'] = pd.cut(df['TikTok Posts'], bins=bin_edges, labels=bin_labels, right=False)
+tiktok_posts['Playlist Probability'] = df['Playlist Probability']
+
+# boxenplot - first two boxes are middle 50%, second two boxes are 25%, third two boxes are 12.5%,...
+plt.figure(figsize=(10, 6))
+sns.boxenplot(tiktok_posts, x='TikTok Post Bins', y='Playlist Probability', palette='mako', linewidth=0.9)
+plt.title('Playlist Probability by TikTok Post Bins', fontsize=16, y=1.02)
+plt.xlabel('TikTok Posts', labelpad=15)
+plt.ylabel('Playlist Probability')
+plt.xticks(rotation=0)
+plt.show()
+```
+
+![30](images/30.png)
+
+**8. Playlist Probability by Release Year**
+
+The line plot below shows that older songs are indeed more likely to be included in playlists. 
+
+```python {filename=""}
+df['Release Date'] = pd.to_datetime(df['Release Date'])
+
+year = pd.DataFrame()
+
+# extract year from the release date
+year['Release Year'] = df['Release Date'].dt.year
+
+year['Playlist Probability'] = df['Playlist Probability']
+
+# group by year and calculate the average playlist probability for each year
+playlist_by_year = year.groupby('Release Year')['Playlist Probability'].mean()
+
+plt.figure(figsize=(10, 6))
+sns.lineplot(x=playlist_by_year.index, y=playlist_by_year.values, color='slategrey', linewidth=2)
+plt.title('Average Playlist Probability by Release Year', fontsize=16)
+plt.xlabel('Release Year')
+plt.ylabel('Average Playlist Probability')
+plt.show()
+```
+
+![32](images/32.png)
+
+**9. The Most Popular Artists**
+
+The visualization below summarizes the top 20 most popular artists across streaming and social media platforms. Some of the results and surprising, while others are expected.
+
+```python {filename=""}
+# sum of streams and views across platforms (Spotify, YouTube, TikTok, etc.) for each artist
+artist_popularity = df.groupby('Artist')[['Spotify Streams', 'YouTube Views', 'TikTok Views', 'Pandora Streams']].sum()
+
+# sum all platform views/streams for each artist
+artist_popularity['Total Popularity'] = artist_popularity.sum(axis=1)
+
+# sort artists by total popularity in descending order
+artist_popularity = artist_popularity.sort_values(by='Total Popularity', ascending=False).head(20)
+
+plt.figure(figsize=(10, 6))
+sns.barplot(x=artist_popularity.index, y=artist_popularity['Total Popularity'], palette='Blues_d')
+plt.title('Top 10 Most Popular Artists Across Platforms', fontsize=16, y=1.02)
+plt.xlabel('Artist')
+plt.ylabel('Total Popularity (Streams & Views)')
+plt.xticks(rotation=90)
+plt.show()
+```
+
+![33](images/33.png)
+
+**10. Genre Word Cloud**
+
+The most common genres are visible in this word cloud. It appears that most of the songs are either hip hop, electronic, pop, and pop rock. This makes sense because these genres are easy to get into and are popular. 
+
+```python {filename=""}
+
+import pandas as pd
+import ast
+import matplotlib.pyplot as plt
+from collections import Counter
+from wordcloud import WordCloud
+
+# convert string representation of lists into actual lists
+genre_df['Genres'] = df['Genres'].apply(ast.literal_eval)
+
+# flatten the list of genres
+all_genres = [genre for sublist in genre_df['Genres'] for genre in sublist]
+
+# count occurrences
+genre_counts = Counter(all_genres)
+
+# word cloud
+wordcloud = WordCloud(width=2000, height=1000, background_color='white', colormap='mako_r')
+wordcloud.generate_from_frequencies(genre_counts)
+
+plt.figure(figsize=(12, 6), dpi=300)
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis('off')
+plt.title('Most Common Genres')
+plt.show()
+```
+
+![34](images/34.png)
