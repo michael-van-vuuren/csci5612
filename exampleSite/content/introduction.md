@@ -36,9 +36,9 @@ A song’s ability to sustain engagement over time is crucial in today’s music
 
 Several studies and industry reports have explored factors influencing song popularity, such as the impact of streaming algorithms, social media trends, and audio features. 
 
-**Hit Song Prediction:** Machine learning has been applied to predict a song’s success based on audio features, lyrics, and listener engagement. A study in *Frontiers in Artificial Intelligence* found that neural data significantly improves hit song classification accuracy ([Frontiers](https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2023.1154663/full)).
+**Hit Song Prediction:** Machine learning has been applied to predict a song’s success based on audio features, lyrics, and listener engagement. A study from "Frontiers in Artificial Intelligence" found that neural data significantly improves hit song classification accuracy ([Frontiers](https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2023.1154663/full)).
 
-**Social Media Influence:** Platforms like TikTok and YouTube have reshaped music discovery, often determining which songs become hits. Research from Neuroscience News found that social networks can increase music popularity prediction accuracy by 50% ([Neuroscience News](https://neurosciencenews.com/social-connections-music-26294/)).
+**Social Media Influence:** Platforms like TikTok and YouTube have reshaped music discovery, often determining which songs become hits. Research from "Neuroscience News" found that social networks can increase music popularity prediction accuracy by 50% ([Neuroscience News](https://neurosciencenews.com/social-connections-music-26294/)).
 
 This project builds upon these studies by integrating streaming statistics, social media engagement metrics, and metadata to predict a song's probability of being added to playlists, an important metric to determine the long-term engagement of a song.
 
