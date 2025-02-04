@@ -721,14 +721,15 @@ base_v2.columns
 To create the target variable of playlist probability, columns involving playlist counts and reaches can be combined and transformed into a probability as follows:
 
 $$ P(\text{track being included in a playlist}) =$$
-$$\sigma\left(\left(\alpha\sum_i \frac{\text{Playlist Count}_i}{max(\text{Playlist Count}_i)} + \beta\sum_i \frac{\text{Playlist Reach}_i}{max(\text{Playlist Reach}_i)}\right)^{0.5}\right)$$
+$$\sigma\left(\left(\alpha\sum_i \frac{\text{C}_i}{max(\text{C}_i)} + \beta\sum_i \frac{\text{R}_i}{max(\text{R}_i)}\right)^{0.5}\right)$$
 
 where
 
-1. $\sigma(x) = \frac{1}{1+e^{-x}}$, or the sigmoid function, is used to map a value between 0 and 1
-2. $i$ represents each the playlist count and reach for each platform
-3. $\alpha$ and $\beta$ are used to tune the weights of count and reach on the score
-4. Square root of weighted sum is taken to correct heavy right skew
+1. $C_i$ is the total playlist count for platform $i$
+2. $R_i$ is the total playlist reach for platform $i$
+3. $\sigma(x) = \frac{1}{1+e^{-x}}$, or the sigmoid function, is used to map a value between 0 and 1
+4. $\alpha$ and $\beta$ are used to tune the weights of count and reach on the score
+5. Square root of weighted sum is taken to correct heavy right skew
 
 This works okay for now, but might be tweaked before training any models. Here is the distribution:
 
