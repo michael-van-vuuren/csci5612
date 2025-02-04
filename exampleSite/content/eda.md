@@ -725,8 +725,8 @@ $$\sigma\left(\left(\alpha\sum_i \frac{\text{C}_i}{max(\text{C}_i)} + \beta\sum_
 
 where
 
-1. $C_i$ is the total playlist count for platform $i$
-2. $R_i$ is the total playlist reach for platform $i$
+1. $C_i$ is the playlist count column for platform $i$
+2. $R_i$ is the playlist reach column for platform $i$
 3. $\sigma(x) = \frac{1}{1+e^{-x}}$, or the sigmoid function, is used to map a value between 0 and 1
 4. $\alpha$ and $\beta$ are used to tune the weights of count and reach on the score
 5. Square root of weighted sum is taken to correct heavy right skew
