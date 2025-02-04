@@ -337,7 +337,7 @@ These modules are located under `src/api/spotify/` and `src/api/musicbrainz/` un
 
 ## Cleaning & Integration
 
-The base dataset downloaded from Kaggle before any modification is found in `data/Most_Streamed_Spotify_Songs_2024_utf8` under the project root. 
+The base dataset downloaded from Kaggle before any modification is found in `data/Most_Streamed_Spotify_Songs_2024_utf8.csv` under the project root. 
 
 Snippet of raw dataset:
 
