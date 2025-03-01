@@ -10,6 +10,7 @@
 {{- $tag := .Get "tag" -}}
 {{- $tagType := .Get "tagType" -}}
 {{- $target := .Get "target" | default "_self" -}}
+{{- $absolute := .Get "absolute" | default false -}}
 
 {{/* Image processing options */}}
 {{- $method := .Get "method" | default "Resize" | humanize -}}
@@ -47,5 +48,6 @@
   "tag"         $tag
   "tagType"     $tagType
   "target"      $target
+  "absolute"    $absolute
 )
 -}}

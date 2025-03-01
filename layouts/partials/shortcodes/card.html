@@ -17,7 +17,20 @@
 
 {{- $external := strings.HasPrefix $link "http" -}}
 {{- $target := .target | default "_self" -}}
-{{- $href := cond (strings.HasPrefix $link "/") ($link | relURL) $link -}}
+{{- $absolute := eq .absolute "true" -}}  {{/* Convert string to boolean */}}
+{{- $baseURL := "https://michael-van-vuuren.github.io/csci5612" -}}
+
+{{- $href := $link -}}
+
+{{- if and (not $external) $absolute -}}
+  {{- if strings.HasPrefix $link "/" -}}
+    {{- $href = printf "%s%s" $baseURL $link -}}
+  {{- else -}}
+    {{- $href = printf "%s/%s" $baseURL $link -}}
+  {{- end -}}
+{{- else -}}
+  {{- $href = cond (strings.HasPrefix $link "/") ($link | relURL) $link -}}
+{{- end -}}
 
 
 <a
@@ -45,7 +58,6 @@
   {{- with $subtitle -}}
     {{- $padding = "hx-pt-4 hx-px-4" -}}
   {{- end -}}
-
 
   <span class="hextra-card-icon hx-flex hx-font-semibold hx-items-start hx-gap-2 {{ $padding }} hx-text-gray-700 hover:hx-text-gray-900 dark:hx-text-neutral-200 dark:hover:hx-text-neutral-50">
     {{- with $icon }}{{ partial "utils/icon.html" (dict "name" $icon) -}}{{- end -}}
