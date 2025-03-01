@@ -27,7 +27,7 @@ text
   ![PCA(ColoredbyAllTimeRank)_2D](images/pca/PCA(ColoredbyAllTimeRank)_2D.png)
 
   {{< cards >}}
-    {{< card link="/plots/PCA(ColoredbyAllTimeRank)_2D.html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" >}}
+    {{< card link="csci5612/plots/PCA(ColoredbyAllTimeRank)_2D.html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" >}}
   {{< /cards >}}
   {{< /tab >}}
 
@@ -37,7 +37,7 @@ text
   ![PCA(ColoredbyHighPlaylistProbability)_2D](images/pca/PCA(ColoredbyHighPlaylistProbability)_2D.png)
 
   {{< cards >}}
-    {{< card link="/plots/PCA(ColoredbyHighPlaylistProbability)_2D.html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" >}}
+    {{< card link="csci5612/plots/PCA(ColoredbyHighPlaylistProbability)_2D.html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" >}}
   {{< /cards >}}
   {{< /tab >}}
 {{< /tabs >}}
@@ -51,7 +51,7 @@ text
   ![PCA(ColoredbyAllTimeRank)_3D](images/pca/PCA(ColoredbyAllTimeRank)_3D.png)
 
   {{< cards >}}
-    {{< card link="/plots/PCA(ColoredbyAllTimeRank)_3D.html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" >}}
+    {{< card link="csci5612/plots/PCA(ColoredbyAllTimeRank)_3D.html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" >}}
   {{< /cards >}}
   {{< /tab >}}
 
@@ -61,7 +61,7 @@ text
   ![PCA(ColoredbyHighPlaylistProbability)_3D](images/pca/PCA(ColoredbyHighPlaylistProbability)_3D.png)
 
   {{< cards >}}
-    {{< card link="/plots/PCA(ColoredbyHighPlaylistProbability)_3D.html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" >}}
+    {{< card link="csci5612/plots/PCA(ColoredbyHighPlaylistProbability)_3D.html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" >}}
   {{< /cards >}}
   {{< /tab >}}
 {{< /tabs >}}
