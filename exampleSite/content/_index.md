@@ -10,5 +10,11 @@ toc: false
   {{< card link="eda" title="Data Prep/EDA" icon="clipboard" subtitle="Visit here for data integration, cleaning, and exploration." >}}
 {{< /cards >}}
 
+## Module 2 Project Assignment
+
+{{< cards >}}
+  {{< card link="models" title="Models" icon="refresh" subtitle="Visit here for unsupervised and supervised models." >}}
+{{< /cards >}}
+
 >[!TIP]
 >Use the tabs at the top of the website to navigate between sections.

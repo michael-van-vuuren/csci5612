@@ -1,8 +1,8 @@
 ---
 title: PCA
 type: docs
-prev: docs/_index
-next: docs/clustering
+prev: models/_index
+next: models/clustering
 weight: 1
 ---
 

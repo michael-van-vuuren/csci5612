@@ -1,8 +1,8 @@
 ---
 title: Association Rule Mining
 type: docs
-prev: docs/clustering
-next: docs/dt
+prev: models/clustering
+next: models/
 weight: 3
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: Support Vector Machine
 type: docs
-prev: docs/nb
-next: docs/regression
+prev: models/nb
+next: models/regression
 weight: 6
 ---
 

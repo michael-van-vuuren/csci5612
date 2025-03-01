@@ -1,8 +1,8 @@
 ---
 title: Decision Tree
 type: docs
-prev: docs/arm
-next: docs/nb
+prev: models/
+next: models/nb
 weight: 4
 ---
 

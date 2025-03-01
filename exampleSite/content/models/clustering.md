@@ -1,8 +1,8 @@
 ---
 title: Clustering
 type: docs
-prev: docs/pca
-next: docs/arm
+prev: models/pca
+next: models/arm
 weight: 2
 ---
 

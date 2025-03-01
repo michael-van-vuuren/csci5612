@@ -1,8 +1,8 @@
 ---
 title: Naive Bayes
 type: docs
-prev: docs/dt
-next: docs/svm
+prev: models/dt
+next: models/svm
 weight: 5
 ---
 
