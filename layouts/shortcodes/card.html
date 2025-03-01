@@ -9,6 +9,7 @@
 {{- $imageStyle := .Get "imageStyle" -}}
 {{- $tag := .Get "tag" -}}
 {{- $tagType := .Get "tagType" -}}
+{{- $target := .Get "target" | default "_self" -}}
 
 {{/* Image processing options */}}
 {{- $method := .Get "method" | default "Resize" | humanize -}}
@@ -45,5 +46,6 @@
   "imageStyle"  $imageStyle
   "tag"         $tag
   "tagType"     $tagType
-  )
+  "target"      $target
+)
 -}}

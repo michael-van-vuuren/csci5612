@@ -16,6 +16,7 @@
 {{- end -}}
 
 {{- $external := strings.HasPrefix $link "http" -}}
+{{- $target := .target | default "_self" -}}
 {{- $href := cond (strings.HasPrefix $link "/") ($link | relURL) $link -}}
 
 
@@ -23,7 +24,8 @@
   class="hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 {{ $linkClass }}"
   {{- if $link -}}
     href="{{ $href }}"
-    {{ with $external }}target="_blank" rel="noreferrer"{{ end -}}
+    target="{{ $target }}"
+    {{ with $external }}rel="noopener noreferrer"{{ end -}}
   {{- end -}}
 >
   {{- with $image -}}
