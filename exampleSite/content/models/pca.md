@@ -14,7 +14,11 @@ text
 
 ### Methodology
 
-text
+**Starting Data:**
+![Pre_PCA](/images/pca/Pre_PCA.png)
+
+**PCA-Ready Data:**
+![PCA_Ready](/images/pca/PCA_Ready.png)
 
 ### Visualizations
 
@@ -69,6 +73,12 @@ text
   {{< /tab >}}
 {{< /tabs >}}
 
-### Variance and Loadings
+### Eigenvalues, Variance, & Loadings
+
+Top 3 Eigenvalues:
+
+![Top_3_Eigenvalues](/images/pca/Top_3_Eigenvalues.png)
+
+Explained Variance Ratio (EVR), Cumulative EVR, and Loadings:
 
 ![EVR_CUMEVR_Loadings](/images/pca/EVR_CUMEVR_Loadings.png)
