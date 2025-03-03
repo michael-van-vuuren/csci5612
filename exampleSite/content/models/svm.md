@@ -1,5 +1,5 @@
 ---
-title: Support Vector Machine
+title: Support Vector Machine (SVM)
 type: docs
 prev: models/nb
 next: models/regression

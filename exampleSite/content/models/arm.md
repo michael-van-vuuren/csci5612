@@ -1,18 +1,20 @@
 ---
-title: Association Rule Mining
+title: Association Rule Mining (ARM)
 type: docs
 prev: models/clustering
 next: models/
 weight: 3
 ---
 
-## Association Rule Mining (ARM)
-
-### Definition
+## Definition
 
 text
 
-### Methodology
+## Data Preparation
+
+>[!NOTE]
+>Source code can be found here:\
+>[github.com/michael-van-vuuren/csci5612-workspace/models/unsupervised/ARM.ipynb](https://github.com/michael-van-vuuren/csci5612-workspace/blob/main/models/unsupervised/ARM.ipynb)
 
 **Starting Data:**
 ![PreARMReady](/images/arm/PreARMReady.png)
@@ -20,7 +22,7 @@ text
 **ARM-Ready Data:**
 ![ARMReady](/images/arm/ARMReady.png)
 
-### Top 15 Rules
+## Results
 
 {{< tabs items="By Support,By Confidence,By Lift" >}}
   {{< tab >}}
@@ -58,3 +60,4 @@ text
   {{< /tab >}}
 {{< /tabs >}}
 
+## Conclusions

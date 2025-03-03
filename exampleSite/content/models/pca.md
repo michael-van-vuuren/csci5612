@@ -1,18 +1,23 @@
 ---
-title: PCA
+title: Principal Component Analysis (PCA)
 type: docs
 prev: models/_index
 next: models/clustering
+math: true
 weight: 1
 ---
 
-## Principal Component Analysis (PCA)
+## Definition
 
-### Definition
+PCA is a way to simplify a dataset while retaining its most important information. In a dataset, eigenvectors represent the directions of greatest variation, while each corresponding eigenvalue indicates how much variance that direction captures. The eigenvectors are sorted in descending order based on their eigenvalues, and the top $N$ eigenvectors are retained. The dataset is then projected onto the new space formed by these eigenvectors.
 
-text
+For example, in a dataset with 100 features, PCA might find that three eigenvectors capture 95% of the variance. The dataset can then be mapped onto the 3D space defined by these eigenvectors, reducing it from 100 features to just 3 while still preserving most of the original information. It is important to note that these eigenvectors do not correspond to individual features from the original dataset but rather represent linear combinations of those features.
 
-### Methodology
+## Data Preparation
+
+>[!NOTE]
+>Source code can be found here:\
+>[github.com/michael-van-vuuren/csci5612-workspace/models/unsupervised/PCA.ipynb](https://github.com/michael-van-vuuren/csci5612-workspace/blob/main/models/unsupervised/PCA.ipynb)
 
 **Starting Data:**
 ![PrePCAReady](/images/pca/PrePCAReady.png)
@@ -20,12 +25,14 @@ text
 **PCA-Ready Data:**
 ![PCAReady](/images/pca/PCAReady.png)
 
-### PCA Visualizations
+## PCA Visualizations
+
+In the following section, PCA is applied to the PCA-Ready dataset, and the 2D and 3D PCA reduced data is shown. In both cases, the data is colored according to the continuous `All Time Rank` label and the discrete `All Time Rank Bin` label. Use the tabs to switch between the two. 
 
 >[!TIP]
 >For large & interactive visualizations, click the `{{< icon "newtab" >}} View interactive plot` buttons.
 
-#### Two Principal Components
+### Two Principal Components
 
 {{< tabs items="Colored by All Time Rank,Colored by Binned All Time Rank" >}}
   {{< tab >}}
@@ -48,7 +55,7 @@ text
   {{< /tab >}}
 {{< /tabs >}}
 
-#### Three Principal Components
+### Three Principal Components
 
 {{< tabs items="Colored by All Time Rank,Colored by Binned All Time Rank" >}}
   {{< tab >}}
@@ -71,13 +78,32 @@ text
   {{< /tab >}}
 {{< /tabs >}}
 
-#### Eigenvalues, Variance, & Loadings
+### Eigenvalues, Variance, & Loadings
 
 ![PCAVarianceLoadings](/images/pca/PCAVarianceLoadings.png)
 
-### Kernel PCA Visualizations
+We can see the following from the three charts above:
 
-#### Two Principal Components
+**Information Retained After PCA:**\
+2D Dataset: ~85%\
+3D Dataset: ~95%
+
+**Dimensions Needed for 95% Variance:**\
+To retain at least 95% of the variance in the dataset, the number of principal components required is three. This is clearly visible from the Cumulative Explained Variance Ratio bar chart above. This is determined by summing the cumulative explained variance ratios until reaching 95%.
+
+**Top Three Eigenvalues:**\
+The top three eigenvalues of the dataset are 2.42, 1.82, 0.58.
+
+**Loadings:**\
+The loadings show the weights of each feature in a given principal component. It is interesting to see that the first principal component has a strong positive association with TikTok metrics, while the second principal component has a positive association with YouTube metrics. The third principal component has a strong negative association with TikTok post count, but a slight positive association with TikTok like count and TikTok view count.
+
+Although PCA was effective at reducing the features of the dataset, the current projection of data points onto 2D and 3D space is too cramped. It would be difficult to find a clustering algorithm that can determine whether a song has a low or a high all time rank. Therefore, in the next section, Kernel PCA is used to help spread the data points out and make the data more effective for clustering. Kernel PCA works well when the relationships between features in the underlying dataset are nonlinear. It first projects data onto a higher-dimensional space, then performs PCA in that space.
+
+## Kernel PCA Visualizations
+
+In the following section, Kernel PCA with a radial basis function (RBF) kernel is applied to the PCA-Ready dataset, and the 2D and 3D PCA reduced data is shown. Notice that the data is more spread and circular. These effects are due to the RBF kernel. In both cases, the data is colored according to the continuous `All Time Rank` label and the discrete `All Time Rank Bin` label. Use the tabs to switch between the two. 
+
+### Two Principal Components
 
 {{< tabs items="Colored by All Time Rank,Colored by Binned All Time Rank" >}}
   {{< tab >}}
@@ -100,7 +126,7 @@ text
   {{< /tab >}}
 {{< /tabs >}}
 
-#### Three Principal Components
+### Three Principal Components
 
 {{< tabs items="Colored by All Time Rank,Colored by Binned All Time Rank" >}}
   {{< tab >}}
@@ -122,3 +148,7 @@ text
   {{< /cards >}}
   {{< /tab >}}
 {{< /tabs >}}
+
+## Conclusions
+
+The 3D Kernel PCA dataset has a high concentration of low ranked songs on one "tip" of the data, and a high concentration of high ranked songs away from that tip. This makes it easier to create cluster boundries. Therefore, we will use it for the clustering performed in the following section. 
