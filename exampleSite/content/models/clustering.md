@@ -23,10 +23,12 @@ text
 **Silhouette Scores:**
 ![SilhouetteScores](/images/kmeans/SilhouetteScores.png)
 
-### PCA Visualizations
+### KMeans Visualizations
 
 >[!TIP]
 >For large & interactive visualizations, click the `{{< icon "newtab" >}} View interactive plot` buttons.
+
+#### KMeans Clusters for Selected k-values
 
 {{< tabs items="Two Clusters (k=2),Three Clusters (k=3),Four Clusters (k=4)" >}}
   {{< tab >}}
@@ -57,3 +59,11 @@ text
   {{< /tab >}}
   
 {{< /tabs >}}
+
+#### Comparison to All Time Rank and Binned All Time Rank Labels
+
+<div style="display: flex; justify-content: center; gap: 10px;">
+  <img src="/images/pca/RBFKernelPCAColoredbyAllTimeRank_3D.png" alt="RBF Kernel PCA Colored by All Time Rank 3D" width="48%">
+  <img src="/images/pca/RBFKernelPCAColoredbyAllTimeRankBin_3D.png" alt="RBF Kernel PCA Colored by All Time Rank Bin 3D" width="48%">
+</div>
+
