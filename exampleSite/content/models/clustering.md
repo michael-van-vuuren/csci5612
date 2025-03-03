@@ -60,10 +60,99 @@ text
   
 {{< /tabs >}}
 
-#### Comparison to All Time Rank and Binned All Time Rank Labels
+#### Comparison to Labels
 
-<div style="display: flex; justify-content: center; gap: 10px;">
-  <img src="/images/pca/RBFKernelPCAColoredbyAllTimeRank_3D.png" alt="RBF Kernel PCA Colored by All Time Rank 3D" width="48%">
-  <img src="/images/pca/RBFKernelPCAColoredbyAllTimeRankBin_3D.png" alt="RBF Kernel PCA Colored by All Time Rank Bin 3D" width="48%">
-</div>
+{{< cards >}}
+  {{< card link="" title="All Time Rank" image="/images/pca/RBFKernelPCAColoredbyAllTimeRank_3D.png" >}}
+  {{< card link="" title="Binned All Time Rank" image="/images/pca/RBFKernelPCAColoredbyAllTimeRankBin_3D.png" >}}
+{{< /cards >}}
 
+## DBSCAN Clustering
+
+### Definition
+
+text
+
+### Methodology
+
+Same as KMeans clustering.
+
+### DBSCAN Visualizations
+
+>[!TIP]
+>For large & interactive visualizations, click the `{{< icon "newtab" >}} View interactive plot` buttons.
+
+#### DBSCAN Clusters
+
+{{< tabs items="DBSCAN (eps=0.05),DBSCAN (eps=0.10),DBSCAN (eps=0.15)" >}}
+  {{< tab >}}
+
+  ![3DClusteredPCAData(DBSCANeps=0.05min_samples=50)](/images/dbscan/3DClusteredPCAData(DBSCANeps=0.05min_samples=50).png)
+
+  {{< cards >}}
+    {{< card link="/plots/3DClusteredPCAData(DBSCANeps=0.05min_samples=50).html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
+  {{< /cards >}}
+  {{< /tab >}}
+
+  {{< tab >}}
+
+  ![3DClusteredPCAData(DBSCANeps=0.1min_samples=50)](/images/dbscan/3DClusteredPCAData(DBSCANeps=0.1min_samples=50).png)
+
+  {{< cards >}}
+    {{< card link="/plots/3DClusteredPCAData(DBSCANeps=0.1min_samples=50).html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
+  {{< /cards >}}
+  {{< /tab >}}
+
+  {{< tab >}}
+
+  ![3DClusteredPCAData(DBSCANeps=0.15min_samples=50)](/images/dbscan/3DClusteredPCAData(DBSCANeps=0.15min_samples=50).png)
+
+  {{< cards >}}
+    {{< card link="/plots/3DClusteredPCAData(DBSCANeps=0.15min_samples=50).html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
+  {{< /cards >}}
+  {{< /tab >}}
+  
+{{< /tabs >}}
+
+#### Comparison to Labels
+
+{{< cards >}}
+  {{< card link="" title="All Time Rank" image="/images/pca/RBFKernelPCAColoredbyAllTimeRank_3D.png" >}}
+  {{< card link="" title="Binned All Time Rank" image="/images/pca/RBFKernelPCAColoredbyAllTimeRankBin_3D.png" >}}
+{{< /cards >}}
+
+## Hierarchical Clustering
+
+### Definition
+
+text
+
+### Methodology
+
+
+
+### Hierarchical Visualizations
+
+>[!TIP]
+>For large & interactive visualizations, click the `{{< icon "newtab" >}} View interactive plot` buttons.
+
+#### Hierarchical Clusters
+
+{{< tabs items="Hierarchical Clustering (distance threshold=0.5)" >}}
+  {{< tab >}}
+
+  ![3DHierarchicalClustering(DistanceThreshold=0.5)](/images/hierarchical/3DHierarchicalClustering(DistanceThreshold=0.5).png)
+
+  {{< cards >}}
+    {{< card link="/plots/3DHierarchicalClustering(DistanceThreshold=0.5).html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
+  {{< /cards >}}
+  {{< /tab >}}
+  
+{{< /tabs >}}
+
+#### Comparison to Labels
+
+{{< cards >}}
+  {{< card link="" title="All Time Rank" image="/images/pca/RBFKernelPCAColoredbyAllTimeRank_3D.png" >}}
+  {{< card link="" title="Binned All Time Rank" image="/images/pca/RBFKernelPCAColoredbyAllTimeRankBin_3D.png" >}}
+{{< /cards >}}
