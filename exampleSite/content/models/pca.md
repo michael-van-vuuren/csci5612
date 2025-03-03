@@ -6,7 +6,7 @@ next: models/clustering
 weight: 1
 ---
 
-## Principal Component Analysis
+## Principal Component Analysis (PCA)
 
 ### Definition
 
@@ -37,7 +37,6 @@ text
     {{< card link="/plots/PCAColoredbyAllTimeRank_2D.html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
   {{< /cards >}}
   {{< /tab >}}
-
   {{< tab >}}
   The 50% of songs with the highest ranks are colored in green. The 50% of songs with the lowest ranks are colored in black.
 
@@ -61,7 +60,6 @@ text
     {{< card link="/plots/PCAColoredbyAllTimeRank_3D.html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
   {{< /cards >}}
   {{< /tab >}}
-
   {{< tab >}}
   The 50% of songs with the highest ranks are colored in green. The 50% of songs with the lowest ranks are colored in black.
 
@@ -91,7 +89,6 @@ text
     {{< card link="/plots/RBFKernelPCAColoredbyAllTimeRank_2D.html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
   {{< /cards >}}
   {{< /tab >}}
-
   {{< tab >}}
   The 50% of songs with the highest ranks are colored in green. The 50% of songs with the lowest ranks are colored in black.
 
@@ -115,7 +112,6 @@ text
     {{< card link="/plots/RBFKernelPCAColoredbyAllTimeRank_3D.html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
   {{< /cards >}}
   {{< /tab >}}
-
   {{< tab >}}
   The 50% of songs with the highest ranks are colored in green. The 50% of songs with the lowest ranks are colored in black.
 

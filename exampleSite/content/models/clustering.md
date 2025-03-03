@@ -39,7 +39,6 @@ text
     {{< card link="/plots/3DClusteredPCAData(k=2).html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
   {{< /cards >}}
   {{< /tab >}}
-
   {{< tab >}}
 
   ![3Means](/images/kmeans/3Means.png)
@@ -48,7 +47,6 @@ text
     {{< card link="/plots/3DClusteredPCAData(k=3).html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
   {{< /cards >}}
   {{< /tab >}}
-
   {{< tab >}}
 
   ![4Means](/images/kmeans/4Means.png)
@@ -57,61 +55,6 @@ text
     {{< card link="/plots/3DClusteredPCAData(k=4).html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
   {{< /cards >}}
   {{< /tab >}}
-  
-{{< /tabs >}}
-
-#### Comparison to Labels
-
-{{< cards >}}
-  {{< card link="" title="All Time Rank" image="/images/pca/RBFKernelPCAColoredbyAllTimeRank_3D.png" >}}
-  {{< card link="" title="Binned All Time Rank" image="/images/pca/RBFKernelPCAColoredbyAllTimeRankBin_3D.png" >}}
-{{< /cards >}}
-
-## DBSCAN Clustering
-
-### Definition
-
-text
-
-### Methodology
-
-Same as KMeans clustering.
-
-### DBSCAN Visualizations
-
->[!TIP]
->For large & interactive visualizations, click the `{{< icon "newtab" >}} View interactive plot` buttons.
-
-#### DBSCAN Clusters
-
-{{< tabs items="DBSCAN (eps=0.05),DBSCAN (eps=0.10),DBSCAN (eps=0.15)" >}}
-  {{< tab >}}
-
-  ![3DClusteredPCAData(DBSCANeps=0.05min_samples=50)](/images/dbscan/3DClusteredPCAData(DBSCANeps=0.05min_samples=50).png)
-
-  {{< cards >}}
-    {{< card link="/plots/3DClusteredPCAData(DBSCANeps=0.05min_samples=50).html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
-  {{< /cards >}}
-  {{< /tab >}}
-
-  {{< tab >}}
-
-  ![3DClusteredPCAData(DBSCANeps=0.1min_samples=50)](/images/dbscan/3DClusteredPCAData(DBSCANeps=0.1min_samples=50).png)
-
-  {{< cards >}}
-    {{< card link="/plots/3DClusteredPCAData(DBSCANeps=0.1min_samples=50).html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
-  {{< /cards >}}
-  {{< /tab >}}
-
-  {{< tab >}}
-
-  ![3DClusteredPCAData(DBSCANeps=0.15min_samples=50)](/images/dbscan/3DClusteredPCAData(DBSCANeps=0.15min_samples=50).png)
-
-  {{< cards >}}
-    {{< card link="/plots/3DClusteredPCAData(DBSCANeps=0.15min_samples=50).html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
-  {{< /cards >}}
-  {{< /tab >}}
-  
 {{< /tabs >}}
 
 #### Comparison to Labels
@@ -129,7 +72,13 @@ text
 
 ### Methodology
 
+**Starting Data:**
+![PreHierarchicalClusteringReady](/images/kmeans/PreKMeansReady.png)
 
+**Hierarchical Clustering-Ready Data:**
+![HierarchicalClusteringReady](/images/kmeans/KMeansReady.png)
+
+![Dendrogram](/images/hierarchical/Dendrogram.png)
 
 ### Hierarchical Visualizations
 
@@ -147,7 +96,61 @@ text
     {{< card link="/plots/3DHierarchicalClustering(DistanceThreshold=0.5).html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
   {{< /cards >}}
   {{< /tab >}}
-  
+{{< /tabs >}}
+
+#### Comparison to Labels
+
+{{< cards >}}
+  {{< card link="" title="All Time Rank" image="/images/pca/RBFKernelPCAColoredbyAllTimeRank_3D.png" >}}
+  {{< card link="" title="Binned All Time Rank" image="/images/pca/RBFKernelPCAColoredbyAllTimeRankBin_3D.png" >}}
+{{< /cards >}}
+
+## DBSCAN Clustering
+
+### Definition
+
+text
+
+### Methodology
+
+**Starting Data:**
+![PreDBSCANReady](/images/kmeans/PreKMeansReady.png)
+
+**DBSCAN-Ready Data:**
+![DBSCANReady](/images/kmeans/KMeansReady.png)
+
+### DBSCAN Visualizations
+
+>[!TIP]
+>For large & interactive visualizations, click the `{{< icon "newtab" >}} View interactive plot` buttons.
+
+#### DBSCAN Clusters
+
+{{< tabs items="DBSCAN (eps=0.05),DBSCAN (eps=0.10),DBSCAN (eps=0.15)" >}}
+  {{< tab >}}
+
+  ![3DClusteredPCAData(DBSCANeps=0.05min_samples=50)](/images/dbscan/3DClusteredPCAData(DBSCANeps=0.05min_samples=50).png)
+
+  {{< cards >}}
+    {{< card link="/plots/3DClusteredPCAData(DBSCANeps=0.05min_samples=50).html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
+  {{< /cards >}}
+  {{< /tab >}}
+  {{< tab >}}
+
+  ![3DClusteredPCAData(DBSCANeps=0.1min_samples=50)](/images/dbscan/3DClusteredPCAData(DBSCANeps=0.1min_samples=50).png)
+
+  {{< cards >}}
+    {{< card link="/plots/3DClusteredPCAData(DBSCANeps=0.1min_samples=50).html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
+  {{< /cards >}}
+  {{< /tab >}}
+  {{< tab >}}
+
+  ![3DClusteredPCAData(DBSCANeps=0.15min_samples=50)](/images/dbscan/3DClusteredPCAData(DBSCANeps=0.15min_samples=50).png)
+
+  {{< cards >}}
+    {{< card link="/plots/3DClusteredPCAData(DBSCANeps=0.15min_samples=50).html" title="View interactive plot" icon="newtab" subtitle="" target="_blank" absolute="true" >}}
+  {{< /cards >}}
+  {{< /tab >}}
 {{< /tabs >}}
 
 #### Comparison to Labels
