@@ -29,7 +29,7 @@ $$\text{Support(A, B)} = \frac{\text{transactions with A and B}}{\text{total tra
 
 2. **Confidence:** The probability that a transaction with one itemset also contains another itemset. Essentially the amount to which the rule can be depended on:
 
-$$\text{Confidence(A}\Rightarrow\text{B)} = \frac{\text{Support(A, B)}}{\text{Support(B)}}$$
+$$\text{Confidence(A}\Rightarrow\text{B)} = \frac{\text{Support(A, B)}}{\text{Support(A)}}$$
 
 3. **Lift:** The confidence of a rule $\text{A}\Rightarrow\text{B}$ over the prevalence of consequent $\text{B}$. It boils down to association strength between the antecedent and the consequent. 
 
