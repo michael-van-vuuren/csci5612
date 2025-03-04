@@ -19,6 +19,10 @@ For example, in a dataset with 100 features, PCA might find that three eigenvect
 
 ## Data Preparation
 
+The features we use for PCA are all related to social media: `YouTube Views`, `YouTube Likes`, `TikTok Posts`, `TikTok Likes`, and `TikTok Views`. Following the PCA transformation, the data will be colored according to the continuous `All Time Rank` label and the discrete `All Time Rank Bin` label. By doing this, we are using social media metrics as our features and streaming success as our response. 
+
+Notice that none of the columns are categorical. PCA cannot be applied to categorical variables because there is no way to measure their variance (e.g., cannot measure variance between a book and a chair). Before applying PCA to this feature-set, every column must be normalized to have a mean of 0 and a standard deviation of 1, so that variance can accurately be measured. 
+
 >[!NOTE]
 >Source code can be found here:\
 >[github.com/michael-van-vuuren/csci5612-workspace/models/unsupervised/PCA.ipynb](https://github.com/michael-van-vuuren/csci5612-workspace/blob/main/models/unsupervised/PCA.ipynb)
