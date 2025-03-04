@@ -7,13 +7,31 @@ math: true
 weight: 2
 ---
 
+## Overall Goal
+
+Use clustering on PCA-reduced social media metric data in order to discover clusters that coincide with Spotify streaming rank.
+
 ## Definition
 
-Clustering is an unsupervised machine learning technique that groups data points in a dataset into distinguishable clusters. In general, clustering algorithms work by comparing the distances of points to each other. Data points that are close to each other can form a cluster. Data points that are further apart form distinct clusters. There are numerous methods for clustering. In the following sections, KMeans, Hierarchical, and DBSCAN clustering will be compared, then applied to the 3D Kernel PCA dataset from the PCA section.
+Clustering is an unsupervised machine learning technique that groups data points in a dataset into distinguishable clusters. In general, clustering algorithms work by comparing the distances of points to each other with a selected distance metric. Data points that are close to each other can form a cluster. Data points that are further apart form distinct clusters. 
+
+Distance metrics are essential in clustering because they determine how similarity between data points is measured, directly influencing how clusters are formed. Algorithms like KMeans, Hierarchical Clustering, and DBSCAN rely on distance calculations to group similar points together. Common metrics include Euclidean distance, which measures straight-line proximity, and Manhattan distance, which sums absolute differences along each dimension. Cosine similarity is often used when direction matters more than magnitude, such as in text or high-dimensional data. The choice of metric affects cluster shape, density, and separation, making it crucial to select one that aligns with the data’s structure.
+
+![DistanceMetrics](/images/kmeans/DistanceMetrics.png)
+
+[Image source](https://medium.com/@jodancker/a-brief-introduction-to-distance-measures-ac89cbd2298)
+
+There are numerous methods for clustering. In the following sections, KMeans, Hierarchical, and DBSCAN clustering will be compared, then applied to the 3D Kernel PCA dataset from the PCA section.
 
 ## Comparison of Methods
 
+![ClusteringExamples](/images/kmeans/ClusteringExamples.png)
+
+[Image source](https://medium.com/@sina.nazeri/comparing-the-state-of-the-art-clustering-algorithms-1e65a08157a1)
+
 ### KMeans Clustering
+
+*Clustering via centroids and partitioning*
 
 **Steps:**
 1. Select number of clusters $k$ 
@@ -32,6 +50,8 @@ Clustering is an unsupervised machine learning technique that groups data points
 
 ### Hierarchical Clustering
 
+*Clustering via similarity and hierarchy*
+
 **Steps:**
 1. Start with each data point as its own cluster
 2. Compute the distance between all clusters (using a linkage method like single, complete, or average)
@@ -47,6 +67,8 @@ Clustering is an unsupervised machine learning technique that groups data points
 
 
 ### DBSCAN Clustering
+
+*Clustering via density*
 
 **Steps:**
 1. Select two parameters:
@@ -68,6 +90,8 @@ Clustering is an unsupervised machine learning technique that groups data points
 
 ### Data Preparation
 
+In the following section, KMeans is applied to the 3D Kernel PCA dataset from the PCA section. The labels `All Time Rank` and `All Time Rank Bin` are saved for comparison to the clustering results. Each principal component is a quantitative feature, so they can be used in KMeans. We normalize each then compute silhouette scores for increasing values of $k$. The $k$'s to be visualized are the highest three from the silhouette score plot ($k$=[2, 3, 4]). We use scikit-learn to perform KMeans.
+
 >[!NOTE]
 >Source code can be found here:\
 >[github.com/michael-van-vuuren/csci5612-workspace/models/unsupervised/KMeans.ipynb](https://github.com/michael-van-vuuren/csci5612-workspace/blob/main/models/unsupervised/KMeans.ipynb)
@@ -87,6 +111,8 @@ Clustering is an unsupervised machine learning technique that groups data points
 >For large & interactive visualizations, click the `{{< icon "newtab" >}} View interactive plot` buttons.
 
 #### KMeans Clusters for Selected k-values
+
+We can see from the KMeans scatterplots for different $k$ and the comparison scatterplots below that KMeans does a decent job at finding clusters that match up with our labels `All Time Rank` and `All Time Rank Bin`. For $k$=4, It appears that merging clusters 2 & 4 would coincide with low `All Time Rank Bin`, and merging clusters  1 & 3 would coincide with high `All Time Rank Bin`.
 
 {{< tabs items="Two Clusters (k=2),Three Clusters (k=3),Four Clusters (k=4)" >}}
   {{< tab >}}
@@ -126,6 +152,8 @@ Clustering is an unsupervised machine learning technique that groups data points
 
 ### Data Preparation
 
+In the following section, hierarchical clustering is applied to the 3D Kernel PCA dataset from the PCA section. Instead of applying hierarchical clustering to the entire dataset, around 1500 rows were randomly sampled from the dataset, because using all the rows was too performance intensive, and resulted in unappealing dendrograms. The labels `All Time Rank` and `All Time Rank Bin` are saved for comparison to the clustering results. Each principal component is a quantitative feature, so they can be used in hierarchical clustering. We normalize each then use a SciPy to create a linkage matrix and dendrogram.
+
 >[!NOTE]
 >Source code can be found here:\
 >[github.com/michael-van-vuuren/csci5612-workspace/models/unsupervised/Hierarchical.ipynb](https://github.com/michael-van-vuuren/csci5612-workspace/blob/main/models/unsupervised/Hierarchical.ipynb)
@@ -136,14 +164,18 @@ Clustering is an unsupervised machine learning technique that groups data points
 **Hierarchical Clustering-Ready Data:**
 ![HierarchicalClusteringReady](/images/kmeans/KMeansReady.png)
 
-![Dendrogram](/images/hierarchical/Dendrogram.png)
-
 ### Hierarchical Visualizations
 
 >[!TIP]
 >For large & interactive visualizations, click the `{{< icon "newtab" >}} View interactive plot` buttons.
 
 #### Hierarchical Clusters
+
+We can see from the dendrogram below with a threshold value of 0.5 that there is one large red group and some smaller separate groups. We can use scatterplots to visualize which groups map to which data points.
+
+![Dendrogram](/images/hierarchical/Dendrogram.png)
+
+We can see from the scatterplots below that hierarchical clustering does a good job at finding clusters that match up with our labels `All Time Rank` and `All Time Rank Bin`. It appears that merging the pink (red in the dendrogram) and gray (green in the dendrogram) clusters would coincide with low `All Time Rank Bin`, and merging the rest of the clusters would coincide with high `All Time Rank Bin`.
 
 {{< tabs items="Hierarchical Clustering (distance threshold=0.5)" >}}
   {{< tab >}}
@@ -167,6 +199,8 @@ Clustering is an unsupervised machine learning technique that groups data points
 
 ### Data Preparation
 
+In the following section, density based (DBSCAN) clustering is applied to the 3D Kernel PCA dataset from the PCA section. The labels `All Time Rank` and `All Time Rank Bin` are saved for comparison to the clustering results. Each principal component is a quantitative feature, so they can be used in density based clustering. We normalize each then use scikit-learn to perform DBSCAN.
+
 >[!NOTE]
 >Source code can be found here:\
 >[github.com/michael-van-vuuren/csci5612-workspace/models/unsupervised/DBSCAN.ipynb](https://github.com/michael-van-vuuren/csci5612-workspace/blob/main/models/unsupervised/DBSCAN.ipynb)
@@ -183,6 +217,8 @@ Clustering is an unsupervised machine learning technique that groups data points
 >For large & interactive visualizations, click the `{{< icon "newtab" >}} View interactive plot` buttons.
 
 #### DBSCAN Clusters
+
+DBSCAN was applied with a minimum sample size $m$ of 50, and epsilon values of $\epsilon$=[0.05, 0.10, 0.15]. The reason a high minimum sample size and low epsilons (low neighborhood radius) were used is because in our dataset, most of the songs with lower `All Time Rank` scores are grouped at a higher density tip, while most of the songs with higher `All Time Rank` scores are grouped with lower density. Therefore, we can use DBSCAN to identify the high density tip as a cluster, then use the noise as the other cluster to find clusters that match up with `All Time Rank Bin`. The results below show that this is quite effective, especially when $\epsilon$=0.10.
 
 {{< tabs items="DBSCAN (eps=0.05),DBSCAN (eps=0.10),DBSCAN (eps=0.15)" >}}
   {{< tab >}}
@@ -219,3 +255,9 @@ Clustering is an unsupervised machine learning technique that groups data points
 {{< /cards >}}
 
 ## Conclusions
+
+By applying clustering to PCA-reduced social media metric data, we aimed to discover patterns that align with Spotify streaming rank. The analysis compared KMeans, Hierarchical, and DBSCAN clustering to see which method best identified meaningful clusters.
+
+KMeans showed some alignment with Spotify’s All Time Rank by forming distinct groups, but required specifying the number of clusters in advance. Hierarchical clustering provided a clear dendrogram, revealing how tracks could be merged based on similarity, but was computationally expensive for the full dataset.
+
+DBSCAN proved to be the most effective method. Since DBSCAN identifies clusters based on density, it naturally aligned with the structure of the dataset: songs with high-density regions tended to have lower All Time Rank scores, indicating higher popularity, while those in lower-density regions had higher All Time Rank scores, representing less popular tracks. By adjusting the neighborhood radius ($\epsilon$), DBSCAN was able to isolate these patterns effectively, making it the best approach for uncovering clusters that reflect streaming rank.

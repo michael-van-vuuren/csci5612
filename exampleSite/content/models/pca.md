@@ -7,6 +7,10 @@ math: true
 weight: 1
 ---
 
+## Overall Goal
+
+Use PCA to reduce the dimensionality of the dataset so that unsupervised clustering models are more effective and easier to visualize.
+
 ## Definition
 
 PCA is a way to simplify a dataset while retaining its most important information. In a dataset, eigenvectors represent the directions of greatest variation, while each corresponding eigenvalue indicates how much variance that direction captures. The eigenvectors are sorted in descending order based on their eigenvalues, and the top $N$ eigenvectors are retained. The dataset is then projected onto the new space formed by these eigenvectors.
@@ -151,4 +155,4 @@ In the following section, Kernel PCA with a radial basis function (RBF) kernel i
 
 ## Conclusions
 
-The 3D Kernel PCA dataset has a high concentration of low ranked songs on one "tip" of the data, and a high concentration of high ranked songs away from that tip. This makes it easier to create cluster boundries. Therefore, we will use it for the clustering performed in the following section. 
+After performing PCA, we found that only three dimensions were needed to retain 95% of the variance of the original dataset. We also saw how using Kernel PCA helped separate the data points more than regular PCA. The 3D Kernel PCA dataset has a high concentration of low ranked songs on one "tip" of the data, and a high concentration of high ranked songs away from that tip. This makes it easier to create cluster boundries. Therefore, we will use it for the clustering performed in the following section. 
