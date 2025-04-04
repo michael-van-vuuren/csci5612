@@ -11,7 +11,7 @@ weight: 3
 
 Use association rule mining on an augmented social media metric dataset in order to a rich ruleset that uncovers common patterns between social media and song popularity.
 
-## Definition
+## Overview
 
 Association rule mining, or ARM, is an unsupervised machine learning method for uncovering relationships that exist in a dataset. The most commonly taught example is using ARM to identify which items frequently purchased together at a grocery store. For example, buying ham might lead to an increased likelihood of buying cheese, and those two items together might increase the likelihood of buying sandwich bread. It is different from clustering because it is not only grouping like items together, it is also identying relationships that exist between them. 
 

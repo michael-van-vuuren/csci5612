@@ -1,9 +1,31 @@
 ---
 title: Naive Bayes
 type: docs
-prev: models/dt
-next: models/svm
-weight: 5
+prev: models/_index
+next: models/dt
+weight: 4
 ---
 
-Naive Bayes
+## Overall Goal
+
+text
+
+## Overview
+
+text
+
+## Data Preparation
+
+text
+
+## Modeling 
+
+text
+
+## Results
+
+text
+
+## Conclusions
+
+text

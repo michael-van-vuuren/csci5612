@@ -11,7 +11,7 @@ weight: 1
 
 Use PCA to reduce the dimensionality of the dataset so that unsupervised clustering models are more effective and easier to visualize.
 
-## Definition
+## Overview
 
 PCA is a way to simplify a dataset while retaining its most important information. In a dataset, eigenvectors represent the directions of greatest variation, while each corresponding eigenvalue indicates how much variance that direction captures. The eigenvectors are sorted in descending order based on their eigenvalues, and the top $N$ eigenvectors are retained. The dataset is then projected onto the new space formed by these eigenvectors.
 

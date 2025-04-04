@@ -1,9 +1,32 @@
 ---
 title: Decision Tree
 type: docs
-prev: models/
-next: models/nb
-weight: 4
+prev: models/nb
+next: models/regression
+weight: 5
 ---
 
-Decision Tree
+## Overall Goal
+
+text
+
+## Overview
+
+text
+
+## Data Preparation
+
+text
+
+## Modeling 
+
+text
+
+## Results
+
+text
+
+## Conclusions
+
+text
+

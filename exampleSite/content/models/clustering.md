@@ -11,7 +11,7 @@ weight: 2
 
 Use clustering on PCA-reduced social media metric data in order to discover clusters that coincide with Spotify streaming rank.
 
-## Definition
+## Overview
 
 Clustering is an unsupervised machine learning technique that groups data points in a dataset into distinguishable clusters. In general, clustering algorithms work by comparing the distances of points to each other with a selected distance metric. Data points that are close to each other can form a cluster. Data points that are further apart form distinct clusters. 
 

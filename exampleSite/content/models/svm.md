@@ -1,9 +1,32 @@
 ---
 title: Support Vector Machine (SVM)
 type: docs
-prev: models/nb
-next: models/regression
-weight: 6
+prev: models/regression
+next: models/_index
+weight: 7
 ---
 
-Support Vector Machine
+## Overall Goal
+
+text
+
+## Overview
+
+text
+
+## Data Preparation
+
+text
+
+## Modeling 
+
+text
+
+## Results
+
+text
+
+## Conclusions
+
+text
+

@@ -1,9 +1,32 @@
 ---
-title: Regression
+title: Logistic Regression
 type: docs
-prev: models/svm
-next: models/
-weight: 7
+prev: models/dt
+next: models/svm
+weight: 6
 ---
 
-Regression
+## Overall Goal
+
+text
+
+## Overview
+
+text
+
+## Data Preparation
+
+text
+
+## Modeling 
+
+text
+
+## Results
+
+text
+
+## Conclusions
+
+text
+

@@ -3,10 +3,16 @@ title: CSCI 5612 Semester Project
 toc: false
 ---
 
-## Module 2 Project Assignment
+## Module 3 Project Assignment
 
 {{< cards >}}
   {{< card link="models" title="Models" icon="refresh" subtitle="Visit here for unsupervised and supervised models." tag="Recently updated!" tagType="info" >}}
+{{< /cards >}}
+
+## Module 2 Project Assignment
+
+{{< cards >}}
+  {{< card link="models" title="Models" icon="refresh" subtitle="Visit here for unsupervised and supervised models." >}}
 {{< /cards >}}
 
 ## Module 1 Project Assignment

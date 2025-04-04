@@ -5,7 +5,7 @@ next: models/
 
 {{< cards >}}
   {{< card link="pca" title="Unsupervised" icon="cube-transparent" subtitle="Visit here for Principal Component Analysis, Clustering, and Association Rule Mining." >}}
-  {{< card link="dt" title="Supervised" icon="cube" subtitle="Visit here for Decision Tree, Naive Bayes, Support Vector Machine, and Regression models." tag="Coming Soon!" tagType="warning" >}}
+  {{< card link="nb" title="Supervised" icon="cube" subtitle="Visit here for Naive Bayes, Decision Tree, Logistic Regression, and Support Vector Machine models." tag="Recently updated!" tagType="info" >}}
 {{< /cards >}}
 
 >[!TIP]
