@@ -710,7 +710,7 @@ All the missing values have been handled (might come back and improve methodolog
 
 Now it is time to determine/create a target variable (target variable will vary depending on the model, but this will serve as the main target variable).
 
-Since many of the columns in the dataset are about streaming numbers and popularity, the target variable should not be something like predicting Spotify streams, because that lead to a circular prediction model. Instead, a variable that represents the probability of a song being included in a playlist will be the target variable. Along with this variable will be a binned version, i.e. low and high probability, for use on classification models.
+Since many of the columns in the dataset are about streaming numbers and popularity, the target variable should not be something like predicting Spotify streams, because that results in a circular prediction model. Instead, a variable that represents the probability of a song being included in a playlist will be the target variable. Along with this variable will be a binned version, i.e. low and high probability, for use on classification models.
 
 ```python {filename=""}
 base_v2.columns
