@@ -28,19 +28,20 @@ Three key equations define the methods decision trees use to determine what feat
 
 1. **Gini Index**: This measures the purity of a node. A node is more pure when most of its samples belong to a single class. A Gini of 0 is pure, while a Gini of 1 is maximally impure. 
 
-$$Gini(D_{\text{node}}) = 1 - \sum_{i=1}^{k}p_i^2$$
+$$\text{Gini}(D_{\text{node}}) = 1 - \sum_{i=1}^{k}p_i^2$$
 
 where $p_i$ is the proportion of class $i$ in the dataset.
 
 2. **Entropy**: This measures the amount of disorder in a node. An entropy of 0 is fully ordered, while an entropy of $log_2(k)$ is maximally disordered. 
 
-$$Entropy(D_{\text{node}}) = - \sum_{i=1}^{k} \log_2(p_i)$$
+$$\text{Entropy}(D_{\text{node}}) = - \sum_{i=1}^{k} \log_2(p_i)$$
 
 where $p_i$ is the proportion of class $i$ in the dataset.
 
 3. **Information Gain**: This measures how much the entropy of a parent node decreases after making a node splitting decision. It is important to understand that information gain can be defined to use Entropy or Gini index.
 
-$$IG(D, F) = Entropy(D) - \sum_{v \in Values(F)} \frac{|D_v|}{|D|} Entropy(D_v)$$
+$$\text{IG}(D, F)$$
+$$= \text{Entropy}(D)\ - \sum_{v \in Values(F)} \frac{|D_v|}{|D|} \text{Entropy}(D_v)$$
 
 where $F$ is the feature being used to split, $D_v$ is the subset of samples where $F = v$, and $|D|$ is the total number of samples.
 
@@ -66,44 +67,48 @@ Here is a simple example of using Entropy and Information Gain to create a decis
 
 {{% steps %}}
 
-### Compute Entropy of D
-$p_{yes}=\frac{3}{5}$\
-$p_{no}=\frac{2}{5}$
+### Compute Entropy of Parent Node
+$p_{yes}=\frac{3}{5}, p_{no}=\frac{2}{5}$
 
-$$Entropy(D) = -\left(\frac{3}{5}\log_2\frac{3}{5}+\frac{2}{5}\log_2\frac{2}{5}\right)$$ 
-$$= -\left(0.6\cdot(-0.737)+0.4\cdot(-1.322)\right) \approx 0.971$$
+$\text{Entropy}(D)$\
+$ = -\left(\frac{3}{5}\log_2\frac{3}{5}+\frac{2}{5}\log_2\frac{2}{5}\right)$\
+$= -\left(0.6\cdot(-0.737)+0.4\cdot(-1.322)\right) \approx 0.971$
 
-### Split by Feature 1 values
+### Split by Feature 1 values and compute Entropy Child Nodes
 Feature 1 has 3 values: Low, Medium, High
 
 For Low, 
 
-$p_{yes}=0$\
-$p_{no}=1$
+$p_{yes}=0, p_{no}=1$
 
-$$Entropy(D_{\text{Low}}) = -\left(0\log_20+1\log_21\right) = 0$$
+$\text{Entropy}(D_{\text{Low}})$\
+$ = -\left(0\log_20+1\log_21\right) = 0$
 
 For Medium,  
 
-$p_{yes}=\frac{1}{2}$\
-$p_{no}=\frac{1}{2}$
+$p_{yes}=\frac{1}{2}, p_{no}=\frac{1}{2}$
 
-$$Entropy(D_{\text{Medium}}) = -\left(0.5\log_20.5+0.5\log_20.5\right) = 1$$
+$\text{Entropy}(D_{\text{Medium}})$\
+$ = -\left(0.5\log_20.5+0.5\log_20.5\right) = 1$
 
 For High,  
 
-$p_{yes}=1$\
-$p_{no}=0$
+$p_{yes}=1, p_{no}=0$
 
-$$Entropy(D_{\text{High}}) = -\left(1\log_21+0\log_20\right) = 0$$
+$\text{Entropy}(D_{\text{High}})$\
+$ = -\left(1\log_21+0\log_20\right) = 0$
 
 ### Calculate the weighted Entropy after splitting
 
-$$\text{Weighted Entropy} = \frac{2}{5} \cdot 0 + \frac{2}{5} \cdot 1 +\frac{1}{5} \cdot 0 = 0.4$$
+$\text{Weighted Entropy}$\
+$ = \frac{2}{5} \cdot 0 + \frac{2}{5} \cdot 1 +\frac{1}{5} \cdot 0 = 0.4$
 
 ### Calculate the Information Gain
 
-$$IG(D, Feature 1) = Entropy(D) - \text{Weighted Entropy} = 0.971 - 0.4 = 0.571$$
+$IG(D, Feature 1)$\
+$ = \text{Entropy}(D) - \text{Weighted Entropy}$\
+$ = 0.971 - 0.4$\
+$ = 0.571$
 
 {{% / steps %}}
 

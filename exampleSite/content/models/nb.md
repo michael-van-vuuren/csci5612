@@ -63,11 +63,11 @@ To get the class with the highest probability given the feature-set, we simply f
 
 $$\hat{y} = \argmax_k \left[P(C_k) \prod_{i=1}^{n} P(x|C_k)\right]$$
 
-Naive Bayes typically requires a correction mechanism called Laplace Smoothing. Smoothing is used to avoid zero probabilities when a feature value doesn’t appear in the training data for a given class. Since each probability is being multiplied in the step above, if any single probability became zero for a feature, the entire probability of feature belonging to that class would become zero. Laplace Smoothing corrects for this:
+Naive Bayes classifiers trained on discrete features, like Multinomial or Categorical Naive Bayes, often require  a correction mechanism called Laplace Smoothing. Its purpose is to avoid zero probabilities when a specific feature value been observed for a given class in the training data. Since each probability is being multiplied in the step above, if any single probability became zero for a feature, the entire calculated probability for that class would incorrectly become zero. Laplace Smoothing corrects for this by adding a small value to each count:
 
-$$P(x|C_k) = \frac{\text{count}+1}{\text{total counts}+\text{number of possible values}}$$
+$$P(x_i|C_k) = \frac{\text{count}(x_i, C_k) + 1}{\text{total count of features in } (C_k) + V}$$
 
-Note that Laplace Smoothing is not needed for Gaussian Naive Bayes, because it is designed for discrete data.
+Note that Laplace Smoothing is not needed for Gaussian Naive Bayes, which uses continuous features and models them using Gaussian distributions.
 
 ### Comparison
 |**Type**|**Input**|**Assumed Input Distribution**|**Use Case**|
