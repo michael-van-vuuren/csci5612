@@ -33,7 +33,7 @@ where
 
 The target variable was then discretized to form a target label based on quantiles. Note that the number of examples in the *low* category and the number of examples in the *high* category is roughly equal. 
 
-In this section, the goal is to use Naive Bayes models trained on social media signals and song metadata (excluding direct streaming features) to predict whether a song is more or less likely to end up on a playlist.
+In this section, the goal is to train a variety of Naive Bayes models that accept different forms of input data on social media signals and song metadata (excluding direct streaming features) to predict whether a song is more or less likely to end up on a playlist.
 
 
 
@@ -184,7 +184,6 @@ Thus, it was important that the features selected did not contain any streaming 
 Each Naive Bayes model, apart from Gaussian Naive Bayes, required a pre-modeling transformation to make the features compatible with the model type. For example, Categorical Naive Bayes expects categorical data, but the current data is quantitative. In this case, a transformation was applied before the data was used an input in the Categorical Naive Bayes model.
 
 ## Naive Bayes Models
-- high level overview of what each model is for
 
 > [!NOTE]
 > Source code for all three Naive Bayes models can be found here:\
