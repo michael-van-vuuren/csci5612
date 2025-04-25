@@ -341,7 +341,7 @@ The base dataset downloaded from Kaggle before any modification is found in `dat
 
 Snippet of raw dataset:
 
-![1](images/1.png)
+![1](/images/eda/1.png)
 
 >[!NOTE]
 >Source code, Jupyter notebooks, and data are stored in this repository:\
@@ -373,7 +373,7 @@ The creator of the CSV dataset improperly encoded the data when uploading, resul
 
 After unsuccessfully trying various decoding methods, Spotify's API was used to fix the corrupted text. Each track in the dataset has an ISRC (International Standard Recording Code), and Spotify provides ISRC metadata for most tracks. By matching ISRCs, the correct metadata replaces the corrupted metadata with properly encoded UTF-8 values. Here index **30** and **31** are corrupted.
 
-![2](images/2.png)
+![2](/images/intro-eda/2.png)
 
 #### 1. Using the Spotify API to correct corrupted rows
 
@@ -425,7 +425,7 @@ accepted, rejected = clean_corrupted_rows(base_corrupt)
 
 Snippet of accepted dataframe:
 
-![3](images/3.png)
+![3](/images/intro-eda/3.png)
 
 There are only 22 corrupted rows that could not be corrected. Given the number of rows the original dataset, and the fact that keeping these rows with faulty ISRCs would be problematic for further API calls, these are excluded from the dataset.
 
@@ -450,7 +450,7 @@ There are 4 additional rows. Why? Notice there are duplicated rows:
 base_not_corrupt[base_not_corrupt['ISRC'].duplicated()]
 ```
 
-![4](images/4.png)
+![4](/images/intro-eda/4.png)
 
 Remove the 4 duplicated rows:
 
@@ -472,7 +472,7 @@ base_not_corrupt = base_not_corrupt[col_order]
 base_not_corrupt.head()
 ```
 
-![5](images/5.png)
+![5](/images/intro-eda/5.png)
 
 After using the Spotify API to fix the corrupted rows, index **30** and **41** are no longer corrupted.
 
@@ -492,7 +492,7 @@ Example:
 base[base['ISRC'] == 'USUM72404101']
 ```
 
-![6](images/6.png)
+![6](/images/intro-eda/6.png)
 
 ```python {filename=""}
 mb.search_isrc('USUM72404101')
@@ -539,13 +539,13 @@ fetch_track_info(base[0:])
 
 The result of the function is a dataframe with each of the additional features:
 
-![7](images/7.png)
+![7](/images/intro-eda/7.png)
 
 There are some missing values in the augmented dataset. To remedy each:
 
 1. `Length` - Impute using median, since distribution has slight right skew.
 
-![8](images/8.png)
+![8](/images/intro-eda/8.png)
 
 2. `Releases` - Set any values of 0 to 1, since the tracks have been released, they have just not been added to the crowdsourced MusicBrainz database. Nonetheless they most likely have only 1 release.
 3. `Genres` - There are 2871 rows with missing genres; about half of all rows. Before training any models, more comprehensive genre information will be gathered using an additional API, Last.fm. For now, this will be left as is.
@@ -572,11 +572,11 @@ isrc_translations = pd.read_csv('../data/isrc.csv', skiprows=[1])
 isrc_translations.head()
 ```
 
-![9](images/9.png)
+![9](/images/intro-eda/9.png)
 
 Only column 1 and 3 provide useful information. Drop the rest and rename column 1 and 3.
 
-![10](images/10.png)
+![10](/images/intro-eda/10.png)
 
 Now the translations can be used to create a new `Registration Country` column in the main dataset.
 
@@ -596,7 +596,7 @@ base_augmented['Registration Country'] = base_augmented['ISRC'].apply(map_isrc_t
 base_augmented['Registration Country'].unique()
 ```
 
-![11](images/11.png)
+![11](/images/intro-eda/11.png)
 
 ### Cleaning Primary Dataset
 
@@ -608,13 +608,13 @@ sns.heatmap(base_v1.isnull(), cmap='Blues_r')
 plt.show()
 ```
 
-![12](images/12.png)
+![12](/images/intro-eda/12.png)
 
 #### 1. Converting datatypes
 
 Before imputing missing values, numerical object types must be converted to numerical types. The initial data types are:
 
-![13](images/13.png)
+![13](/images/intro-eda/13.png)
 
 **Objects to integers:**
 
@@ -645,7 +645,7 @@ for col in cols_to_convert:
 base_v1.dtypes
 ```
 
-![14](images/14.png)
+![14](/images/intro-eda/14.png)
 
 **Floats to integers:**
 
@@ -663,7 +663,7 @@ for col in cols_to_convert:
 base_v1.dtypes
 ```
 
-![15](images/15.png)
+![15](/images/intro-eda/15.png)
 
 This is good for now. `Release Date` can be adjusted in the future.
 
@@ -675,7 +675,7 @@ This is good for now. `Release Date` can be adjusted in the future.
 base_v1[base_v1['Artist'].isnull()]
 ```
 
-![16](images/16.png)
+![16](/images/intro-eda/16.png)
 
 These songs are also missing streaming information, so they are dropped.
 
@@ -693,7 +693,7 @@ For the remaining columns with missing values, using the medians of each column 
 
 In the future, more sophisticated methods such as finding highly correlated columns, using one to determine the other, then dropping one of them might be better.
 
-![17](images/17.png)
+![17](/images/intro-eda/17.png)
 
 ```python {filename=""}
 for col in base_v1.columns:
@@ -702,7 +702,7 @@ for col in base_v1.columns:
         base_v1[col] = base_v1[col].replace(-1, int(col_median))
 ```
 
-![18](images/18.png)
+![18](/images/intro-eda/18.png)
 
 All the missing values have been handled (might come back and improve methodology in the future). 
 
@@ -716,7 +716,7 @@ Since many of the columns in the dataset are about streaming numbers and popular
 base_v2.columns
 ```
 
-![19](images/19.png)
+![19](/images/intro-eda/19.png)
 
 To create the target variable of playlist probability, columns involving playlist counts and reaches can be combined and transformed into a probability as follows:
 
@@ -762,13 +762,13 @@ df_norm['Playlist Probability'] = 1 / (1 + np.exp(-(df_norm['Power Playlist Scor
 df_norm[['Track', 'Playlist Probability']]
 ```
 
-![20](images/20.png)
+![20](/images/intro-eda/20.png)
 
 ```python {filename=""}
 sns.boxplot(x=df_norm['Playlist Probability'])
 ```
 
-![21](images/21.png)
+![21](/images/intro-eda/21.png)
 
 Discretize `Playlist Probability` into two values: 
 
@@ -786,7 +786,7 @@ Before saving the dataset along with the new target variable, drop the playlist 
 
 Snippet of clean dataset:
 
-![22](images/22.png)
+![22](/images/intro-eda/22.png)
 
 ## Exploratory Data Analysis (EDA)
 
@@ -807,7 +807,7 @@ countries['Log Count'] = np.log(countries['Count'])
 countries.head()
 ```
 
-![24](images/24.png)
+![24](/images/intro-eda/24.png)
 
 ```python {filename=""}
 import plotly.express as px
@@ -833,7 +833,7 @@ fig.update_layout(
 fig.show()
 ```
 
-![25](images/25.png)
+![25](/images/intro-eda/25.png)
 
 **2. Distributions of Playlist Probability Scores by Days Since Release**
 
@@ -862,7 +862,7 @@ plt.ylabel('Playlist Probability')
 plt.show()
 ```
 
-![26](images/26.png)
+![26](/images/intro-eda/26.png)
 
 **3. Streaming and Social Media Song Platform Popularity**
 
@@ -905,7 +905,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![27](images/27.png)
+![27](/images/intro-eda/27.png)
 
 **4. Playlist Probability vs Song Length**
 
@@ -927,7 +927,7 @@ plt.ylabel('Playlist Probability')
 plt.show()
 ```
 
-![28](images/28.png)
+![28](/images/intro-eda/28.png)
 
 **5. Correlations Between Streaming and Social Media Metrics**
 
@@ -950,7 +950,7 @@ plt.suptitle('Pairplot of Transformed Streaming and Social Media Metrics (Log Sc
 plt.show()
 ```
 
-![29](images/29.png)
+![29](/images/intro-eda/29.png)
 
 **6. Correlation Amounts Between Streaming and Social Media Metrics**
 
@@ -967,7 +967,7 @@ plt.title('Correlation Heatmap of Streaming and Social Media Metrics', fontsize=
 plt.show()
 ```
 
-![31](images/31.png)
+![31](/images/intro-eda/31.png)
 
 **7. How Playlist Probability Changes Based on Number of TikTok Posts**
 
@@ -998,7 +998,7 @@ plt.xticks(rotation=0)
 plt.show()
 ```
 
-![30](images/30.png)
+![30](/images/intro-eda/30.png)
 
 **8. Playlist Probability by Release Year**
 
@@ -1025,7 +1025,7 @@ plt.ylabel('Average Playlist Probability')
 plt.show()
 ```
 
-![32](images/32.png)
+![32](/images/intro-eda/32.png)
 
 **9. The Most Popular Artists**
 
@@ -1050,7 +1050,7 @@ plt.xticks(rotation=90)
 plt.show()
 ```
 
-![33](images/33.png)
+![33](/images/intro-eda/33.png)
 
 **10. Genre Word Cloud**
 
@@ -1084,4 +1084,4 @@ plt.title('Most Common Genres')
 plt.show()
 ```
 
-![34](images/34.png)
+![34](/images/intro-eda/34.png)

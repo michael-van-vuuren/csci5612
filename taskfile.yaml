@@ -2,9 +2,9 @@ version: "3"
 
 tasks:
   build:
-    desc: Build Hextra documentation site under `exampleSite`
+    desc: Build site under `src`
     cmds:
-      - hugo --gc --minify --themesDir=../.. --source=exampleSite
+      - hugo --gc --minify --themesDir=../.. --source=src
 
   css:
     depends: [build]
@@ -13,7 +13,7 @@ tasks:
       - npx postcss --config postcss.config.js --env production assets/css/styles.css -o assets/css/compiled/main.css
 
   dev:
-    desc: Start development server for Hextra theme
+    desc: Start development server
     cmds:
       - npm run dev:theme
 

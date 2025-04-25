@@ -1,5 +1,5 @@
 # Configuration
-title: Machine Learning
+title: CSCI5612
 
 enableRobotsTXT: true
 enableGitInfo: true
@@ -20,23 +20,7 @@ languages:
   en:
     languageName: English
     weight: 1
-    title: Hextra
-  # fa:
-  #   languageName: فارسی
-  #   languageCode: fa
-  #   languageDirection: rtl
-  #   weight: 2
-  #   title: هگزترا
-  # ja:
-  #   languageName: 日本語
-  #   languageCode: ja
-  #   weight: 3
-  #   title: Hextra
-  # zh-cn:
-  #   languageName: 简体中文
-  #   languageCode: zh-CN
-  #   weight: 4
-  #   title: Hextra
+    title: CSCI5612
 
 module:
   hugoVersion:
@@ -111,8 +95,8 @@ params:
     displayTitle: false
     displayLogo: true
     logo:
-      path: images/t.svg
-      dark: images/t.svg
+      path: favicon.svg
+      dark: favicon.svg
       width: 30
       # height: 20
       # link: /
@@ -151,7 +135,7 @@ params:
 
   editURL:
     enable: false
-    base: "https://github.com/imfing/hextra/edit/main/exampleSite/content"
+    base: "https://github.com/imfing/hextra/edit/main/src/content"
 
   blog:
     list:

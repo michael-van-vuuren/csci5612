@@ -7,7 +7,7 @@ type: introduction
 
 Streaming platforms have fundamentally reshaped how songs gain popularity and sustain long-term success. In the past, major record labels played a dominant role in deciding which artists and songs would reach mainstream audiences. They controlled radio airplay, physical distribution, and promotional campaigns, making it difficult for independent artists to break through. However, in today’s digital landscape, even small creators can achieve widespread recognition due to streaming algorithms and social media trends. Music discovery has become more democratized, with platforms like Spotify, Apple Music, and YouTube allowing artists to release music directly to global audiences. Beyond streaming, social media has emerged as an equally powerful force in shaping music trends. TikTok, in particular, has become a crucial driver of viral music success, where songs can gain massive popularity through challenges, dance trends, and user-generated content. The influence of these platforms is undeniable—statistics show that social media trends directly impact chart performance. In 2024, 13 out of the 16 songs that reached No.1 on the U.S. Billboard Hot 100 were linked to TikTok trends ([Music Business Worldwide](https://www.musicbusinessworldwide.com/tiktok-reveals-its-top-songs-of-2024-says-that-13-of-16-no-1-hits-in-the-us-this-year-are-linked-to-trends-on-its-platform/)).
 
-![23](images/23.png)
+![23](/images/intro-eda/23.png)
 *Paradigm shift in music distribution and consumption ([The Honest Broker](https://www.honest-broker.com/p/results-of-my-survey-who-deserves))*
 
 Since the rise of digital streaming, playlist inclusion on platforms like Spotify and Apple Music has become a critical factor in determining a song’s success. A song that gets added to a playlist is both appealing on first listen and after repeated listens. Therefore a song's inclusion in playlists signifies its long-term listening appeal. The primary focus of this project is to predict the probability of a song being added to a playlist, using a dataset enriched with streaming statistics, social media engagement, and metadata from APIs like Spotify and MusicBrainz.
@@ -64,58 +64,58 @@ This project builds upon these studies by integrating streaming statistics, soci
 
 The dataset contains registration country information for each of the tracks, which approximitely indicates the region of the artist who produced the track. A map showing how many tracks are registered in each country is useful to get an idea of where the artists of the most popular songs are located and how generalizable to decisions guided by the data are. Based on this, more data can be gathered for countries that are lacking in registration counts.
 
-![25](images/25.png)
+![25](/images/intro-eda/25.png)
 
 **2. Distributions of Playlist Probability Scores by Days Since Release**
 
 Understanding how release date affects the likelihood of a song being included in a playlist is important. From the visualization below, it is clear that older songs have a greater likelihood of being included in playlists.
 
-![26](images/26.png)
+![26](/images/intro-eda/26.png)
 
 **3. Streaming and Social Media Song Platform Popularity**
 
 The pie charts below show which platforms generate the most streams and views for all the songs in the dataset. In terms of streaming, Spotify dominates in total streams. In terms of social media, TikTok dominates in total views.
 
-![27](images/27.png)
+![27](/images/intro-eda/27.png)
 
 **4. Playlist Probability vs Song Length**
 
 Understanding how the length of a song affects its playlist-worthiness is useful. From the scatterplot below, it seems that there is a possible positive correlation between playlist-worthiness and song length
 
-![28](images/28.png)
+![28](/images/intro-eda/28.png)
 
 **5. Correlations Between Streaming and Social Media Metrics**
 
 It is important to be aware of how different features in the dataset correlate with each other. Highly correlated features can be dropped so as to leave a single feature to lower dimensionality, and weakly correlated features might provide useful information when used together. The pairplot below was log-transformed because the distributions for each feature had heavy right skews. By transforming the data, it becomes easier to see the relationships between each feature, since they are more centered. Certain features like `Spotify Streams` and `Shazam Counts` appear highly correlated; others are less so. The vertical and horizontal lines visible in each plot are a result of the imputation from earlier in which missing values of a feature were replaced by the feature's median.  
 
-![29](images/29.png)
+![29](/images/intro-eda/29.png)
 
 **6. Correlation Amounts Between Streaming and Social Media Metrics**
 
 This heatmap is supplemental to the pairplot above. It provides correlation scores for each pair of metrics. Pairs that intersect at darker squares have greater correlations. 
 
-![31](images/31.png)
+![31](/images/intro-eda/31.png)
 
 **7. How Playlist Probability Changes Based on Number of TikTok Posts**
 
 This visualization identifies how the number of TikTok posts that include a song affects its probability of being included in a playlist. From the boxenplots below, the extent to which TikTok popularity affects playlist-worthiness is clear: More posts means a higher value and variance in playlist probability.
 
-![30](images/30.png)
+![30](/images/intro-eda/30.png)
 
 **8. Playlist Probability by Release Year**
 
 The line plot below shows that older songs are indeed more likely to be included in playlists. 
 
-![32](images/32.png)
+![32](/images/intro-eda/32.png)
 
 **9. The Most Popular Artists**
 
 The visualization below summarizes the top 20 most popular artists across streaming and social media platforms. Some of the results and surprising, while others are expected.
 
-![33](images/33.png)
+![33](/images/intro-eda/33.png)
 
 **10. Genre Word Cloud**
 
 The most common genres are visible in this word cloud. It appears that most of the songs are either hip hop, electronic, pop, and pop rock. This makes sense because these genres are easy to get into and are popular. 
 
-![34](images/34.png)
+![34](/images/intro-eda/34.png)

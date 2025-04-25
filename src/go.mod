@@ -1,4 +1,4 @@
-module github.com/imfing/hextra/exampleSite
+module github.com/imfing/hextra/src
 
 go 1.20
 

@@ -16,7 +16,7 @@ For classification purposes, this probability was also binned into two categorie
 
 The original dataset included the following features:
 
-![19](/images/19.png)
+![19](/images/intro-eda/19.png)
 
 To calculate playlist inclusion probability, the playlist count and reach columns were normalized, weighted, and combined as follows:
 

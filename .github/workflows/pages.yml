@@ -54,16 +54,16 @@ jobs:
           # For maximum backward compatibility with Hugo modules
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
-        # Use the latest release of the theme to build exampleSite
+        # Use the latest release of the theme to build src
         run: |
-          cd exampleSite && rm go.mod
-          hugo mod init github.com/imfing/hextra/exampleSite
+          cd src && rm go.mod
+          hugo mod init github.com/imfing/hextra/src
           hugo mod get -u github.com/imfing/hextra
           hugo --minify --baseURL "https://${{ github.repository_owner }}.github.io/csci5612/"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./exampleSite/public
+          path: ./src/public
 
   # Deployment job
   deploy:
