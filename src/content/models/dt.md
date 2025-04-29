@@ -169,13 +169,9 @@ After trial and error, the missing values that were previously imputed via media
 ![Clean](/images/dataprep/clean.png)
 
 ### Train-Test Split
-To evaluate model performance on a classification task, the dataset was randomly split into disjoint training and testing sets using an 80/20 ratio—80% for training and 20% for testing. This approach helps ensure both sets are representative of the overall data distribution while remaining completely separate.
+80% of the samples were used for training and the remaining 20% were used for testing, allowing the model to be evaluated on unseen data. To ensure a fair comparison, all Naive Bayes, Decision Tree, and Logistic Regression models used the same 80/20 split. 
 
-Using disjoint sets is critical for classification, as it ensures the model is evaluated on data it hasn't seen during training. This prevents data leakage, which would artificially inflate performance metrics and give a misleading sense of the model’s ability to generalize to new, unseen examples.
-
-The same train-test split was used across all Naive Bayes, Decision Tree, and Logistic Regression models on this page to ensure a fair comparison. By testing each model on the same data, we remove any differences that could come from using different splits.
-
-A more thorough approach would be to use cross-validation, where the data is split into multiple training and validation sets. This allows the model to be evaluated on different subsets of the data and gives a more reliable measure of how well it performs in general. After cross-validation, the final model can be tested on a separate testing set to assess its performance on truly unseen data. However, the models below use a standard train-test split, so the reported performance metrics could be slightly higher or lower than if cross-validation were used.
+A more thorough approach would be to use cross-validation, where the data is split into multiple training and validation sets, called folds. This would give an idea of how the model performs with random variation in the training set. However, the models below use a standard train-test split, so the model results could vary based on the training set.
 
 ![Split](/images/dataprep/split.png)
 

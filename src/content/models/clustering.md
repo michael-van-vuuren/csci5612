@@ -90,7 +90,7 @@ There are numerous methods for clustering. In the following sections, KMeans, Hi
 
 ### Data Preparation
 
-In the following section, KMeans is applied to the 3D Kernel PCA dataset from the PCA section. The labels `All Time Rank` and `All Time Rank Bin` are saved for comparison to the clustering results. Each principal component is a quantitative feature, so they can be used in KMeans. We normalize each then compute silhouette scores for increasing values of $k$. The $k$'s to be visualized are the highest three from the silhouette score plot ($k$=[2, 3, 4]). We use scikit-learn to perform KMeans.
+In the following section, KMeans is applied to the 3D Kernel PCA dataset from the PCA section. The labels `All Time Rank` and `All Time Rank Bin` are saved for comparison to the clustering results. Each principal component is a quantitative feature, so they can be used in KMeans. We normalize each then compute silhouette scores for increasing values of $k$. The $k$'s to be visualized are the highest three from the silhouette score plot ($k$=[2, 3, 4]). We use Scikit-learn to perform KMeans.
 
 >[!NOTE]
 >Source code can be found here:\
@@ -199,7 +199,7 @@ We can see from the scatterplots below that hierarchical clustering does a good 
 
 ### Data Preparation
 
-In the following section, density based (DBSCAN) clustering is applied to the 3D Kernel PCA dataset from the PCA section. The labels `All Time Rank` and `All Time Rank Bin` are saved for comparison to the clustering results. Each principal component is a quantitative feature, so they can be used in density based clustering. We normalize each then use scikit-learn to perform DBSCAN.
+In the following section, density based (DBSCAN) clustering is applied to the 3D Kernel PCA dataset from the PCA section. The labels `All Time Rank` and `All Time Rank Bin` are saved for comparison to the clustering results. Each principal component is a quantitative feature, so they can be used in density based clustering. We normalize each then use Scikit-learn to perform DBSCAN.
 
 >[!NOTE]
 >Source code can be found here:\
