@@ -1,9 +1,9 @@
 ---
-title: Support Vector Machine (SVM)
+title: Boosting (LightGBM)
 type: docs
-prev: models/regression
-next: models/boosting
-weight: 7
+prev: models/svm
+next: models/_index
+weight: 8
 ---
 
 ## Overall Goal
