@@ -29,7 +29,7 @@ https://www.kaggle.com/datasets/nelgiriyewithana/most-streamed-spotify-songs-202
 >[!TIP]
 >Use the table of contents in the right sidebar for easy navigation {{< icon "arrow-sm-right" >}}
 
-## API Examples & Interfacing
+## API Examples and Interfacing
 
 ### Examples
 
@@ -335,7 +335,7 @@ These modules are located under `src/api/spotify/` and `src/api/musicbrainz/` un
 
 {{% /details %}}
 
-## Cleaning & Integration
+## Cleaning and Integration
 
 The base dataset downloaded from Kaggle before any modification is found in `data/Most_Streamed_Spotify_Songs_2024_utf8.csv` under the project root. 
 

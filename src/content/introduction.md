@@ -5,32 +5,51 @@ type: introduction
 
 ## Topic
 
-Streaming platforms have fundamentally reshaped how songs gain popularity and sustain long-term success. In the past, major record labels played a dominant role in deciding which artists and songs would reach mainstream audiences. They controlled radio airplay, physical distribution, and promotional campaigns, making it difficult for independent artists to break through. However, in today’s digital landscape, even small creators can achieve widespread recognition due to streaming algorithms and social media trends. Music discovery has become more democratized, with platforms like Spotify, Apple Music, and YouTube allowing artists to release music directly to global audiences. Beyond streaming, social media has emerged as an equally powerful force in shaping music trends. TikTok, in particular, has become a crucial driver of viral music success, where songs can gain massive popularity through challenges, dance trends, and user-generated content. The influence of these platforms is undeniable—statistics show that social media trends directly impact chart performance. In 2024, 13 out of the 16 songs that reached No.1 on the U.S. Billboard Hot 100 were linked to TikTok trends ([Music Business Worldwide](https://www.musicbusinessworldwide.com/tiktok-reveals-its-top-songs-of-2024-says-that-13-of-16-no-1-hits-in-the-us-this-year-are-linked-to-trends-on-its-platform/)).
+Streaming platforms have changed how songs gain popularity and stay relevant. In the past, record labels decided which artists and songs would reach mainstream audiences. They had a monopoly on song distribution through radio airplay, physical media, and promotional campaigns, which made it difficult for independent artists to gain popularity. 
+
+With the rise of social media, music promotion has become easy. In addition, the rise of platforms like Spotify, Apple Music, and YouTube have allowed artists to release and distribute music to a global audience, without needing to go through a record label. Social media has emerged as a powerful force in shaping which songs gain popularity. TikTok, in particular, has become a crucial driver of viral music success, where songs can gain massive popularity through challenges, dance trends, and posts. The stats show that social media trends directly impact chart performance. In 2024, 13 out of the 16 songs that reached No.1 on the U.S. Billboard Hot 100 were linked to TikTok trends ([Music Business Worldwide](https://www.musicbusinessworldwide.com/tiktok-reveals-its-top-songs-of-2024-says-that-13-of-16-no-1-hits-in-the-us-this-year-are-linked-to-trends-on-its-platform/)).
 
 ![23](/images/intro-eda/23.png)
 *Paradigm shift in music distribution and consumption ([The Honest Broker](https://www.honest-broker.com/p/results-of-my-survey-who-deserves))*
 
-Since the rise of digital streaming, playlist inclusion on platforms like Spotify and Apple Music has become a critical factor in determining a song’s success. A song that gets added to a playlist is both appealing on first listen and after repeated listens. Therefore a song's inclusion in playlists signifies its long-term listening appeal. The primary focus of this project is to predict the probability of a song being added to a playlist, using a dataset enriched with streaming statistics, social media engagement, and metadata from APIs like Spotify and MusicBrainz.
+Since the rise of digital streaming, playlists on platforms like Spotify or Apple Music have become a popular way to listen to and share music. The inclusion of a song on a playlist helps it reach larger audiences, stay relevant over time, and generate consistent streams. This project explores whether a song’s likelihood of being added to a playlist can be predicted using  social media data and metadata, without relying on direct streaming numbers. For example, if a song has a lot of "Shazams" (music recognition app), what can be said about its likelihood of being added to a playlist?
 
-To gain deeper insights into playlist inclusion, we will apply dimensionality reduction techniques such as PCA to uncover the most relevant features while preserving essential patterns in the data. Clustering methods will help identify natural groupings of songs based on social media and streaming metrics, revealing how different engagement patterns correlate with song success. Additionally, association rule mining (ARM) will be used to explore relationships between key factors influencing a song’s popularity, providing interpretable insights that can guide predictive modeling.
+![Playlists](/images/intro-eda/playlists.png)
 
-Additional subtopics to be explored include:
+*Popular playlists on Spotify ([Spotify](https://www.spotify.com))*
 
-- Determining to what extent social media influences track popularity
-- Identifying characteristics of songs that contribute to long-term success and replayability
-- Investigating the interaction between streaming platform algorithms and organic listener engagement
-- And more!
+The first part of the project involves using unsupervised methods to gain an understanding of the dataset:
+
+- **Principal Component Analysis (PCA)** simplifies the dataset by highlighting the most important features. This helps reveal patterns that are easier to analyze and use in later steps.
+
+- **Clustering** techniques such as K-Means and density-based clutering are applied to group songs based on similarities in social media and streaming data. These unsupervised clustering models use the PCA data from the previous section. The clusters reveal the natural groupings of low and high playlist likelihood songs.
+
+- **Association rule mining** is used to reveal relationships between social media behaviors and song popularity, which helps with understanding the factors associated with a song's popularity.
+
+The core of the project involves building models to predict playlist inclusion. A custom target variable (discussed in the section [Creating Target Variable {{< icon "newtab" >}}](https://michael-van-vuuren.github.io/csci5612/eda/#creating-target-variable) under the EDA tab) was created to reflect playlist inclusion, avoiding streaming numbers to reduce bias. Three different methods are explored:
+
+- **Naive Bayes** predicts playlist likelihood based on social media and metadata.
+
+- **Decision Trees** compare the impact of different input types by testing three versions: metadata alone, metadata with social media, and metadata with streaming statistics.
+
+- **Logistic Regression** serves as a benchmark model, using the same features as Naive Bayes to evaluate classification performance.
+
+As a bonus, genre prediction is explored, since genre is a useful feature for playlist models but is often missing in datasets. This section includes:
+
+- **Support Vector Machines (SVMs)** that classify songs by genre based solely on their lyrics.
+
+- An **ensemble model** that uses gradient boosting to improve on the genre prediction performance of the SVMs by combining multiple decision trees in series.
 
 ### Why?
 
-A song’s ability to sustain engagement over time is crucial in today’s music industry. Playlist-worthy songs not only attract immediate attention but also maintain their appeal over multiple listens, contributing to long-term streaming success. Songs that remain in popular playlists tend to generate consistent streams, boosting an artist’s visibility and revenue. Understanding what makes a song “playlist material” can help artists, record labels, and streaming platforms optimize their strategies for song promotion, curation, and discovery. Streaming platforms rely on algorithms to curate playlists, making it essential to identify patterns that influence song selection. Viral success on platforms like TikTok can increase the chances of playlist inclusion, but sustained engagement requires more than initial hype. The ability to maintain listener interest over time often depends on repeatability, emotional connection, and adaptability to different listening contexts. Recognizing these factors allows stakeholders to craft more effective marketing and distribution strategies. 
+Songs that stay popular over time are more likely to succeed. Getting on playlists helps songs reach more people and get more streams. Songs that do well on playlists have replayability. Going viral on social media like TikTok can help, but real success comes from keeping people interested. Knowing what makes a song good for playlists can help artists and music platforms make better choices about promoting and sharing music.
 
 ### Who is affected?
 
-- **Artists and Producers:** Understanding what makes a song playlist-worthy can guide creative and promotion decisions
-- **Record Labels:** Predicting playlist inclusion can help with marketing strategies
-- **Streaming Platforms:** Improving recommendation algorithms based on playlist behavior can increase listening time
-- **Listeners:** Playlists with good songs enhance the user experience
+- **Artists and Producers:** Understanding what makes a song playlist-worthy can guide creative and promotion decisions.
+- **Record Labels:** Predicting playlist inclusion can help with marketing strategies.
+- **Streaming Platforms:** Improving recommendation algorithms based on playlist behavior can increase listening time.
+- **Listeners:** Playlists with good songs enhance the user experience.
 
 ### Related work
 
@@ -42,9 +61,26 @@ Several studies and industry reports have explored factors influencing song popu
 
 This project builds upon these studies by integrating streaming statistics, social media engagement metrics, and metadata to predict a song's probability of being added to playlists, an important metric to determine the long-term engagement of a song.
 
-## Research Questions
+## Primary Questions
+![Questions](/images/intro-eda/goals.png)
 
-1. What audio and metadata features correlate with high playlist inclusion probability?
+The first two questions are focused on the main topic of examining the relationship between social media and music streaming. The third question is a bonus section that explores using text classification models to predict a song's genre from its lyrics, which would be useful for future music classification models. 
+
+Below are the pages that address each question:
+
+|  **Question**  |**Pages**|
+|----------------|---------|
+|     **1.**     | [Naive Bayes Classifiers {{< icon "newtab" >}}](https://michael-van-vuuren.github.io/csci5612/models/nb/)<br>[Decision Trees {{< icon "newtab" >}}](https://michael-van-vuuren.github.io/csci5612/models/dt/)<br>[Logistic Regression Classifier {{< icon "newtab" >}}](https://michael-van-vuuren.github.io/csci5612/models/regression/) |
+|     **2.**     | [ARM {{< icon "newtab" >}}](https://michael-van-vuuren.github.io/csci5612/models/arm/) |
+|     **3.**     | [Support Vector Machines {{< icon "newtab" >}}](https://michael-van-vuuren.github.io/csci5612/models/svm/)<br>[Ensemble Learner {{< icon "newtab" >}}](https://michael-van-vuuren.github.io/csci5612/models/ensemble/) |
+
+The data is also explored in the [Exploratory Data Analysis (EDA) {{< icon "newtab" >}}](https://michael-van-vuuren.github.io/csci5612/eda/#exploratory-data-analysis-eda), [Principal Component Analysis (PCA) {{< icon "newtab" >}}](https://michael-van-vuuren.github.io/csci5612/models/pca/), and [Clustering {{< icon "newtab" >}}](https://michael-van-vuuren.github.io/csci5612/models/clustering/) sections.
+
+## Additional Questions
+
+Some of these questions are left unanswered for a future project.
+
+1. What features correlate with high playlist inclusion probability?
 2. How do social media engagement metrics (e.g. TikTok posts, YouTube likes) influence playlist-worthiness?
 3. Does playlist inclusion probability differ across genres and regions?
 4. How do streaming performance metrics (e.g. Spotify popularity, YouTube views) relate to playlist inclusion?

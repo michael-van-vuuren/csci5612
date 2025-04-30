@@ -114,7 +114,7 @@ $ = 0.571$
 
 Thus, splitting on Feature 1 offers an Information Gain of 0.571, which is quite high. If there were additional features, this would be performed for all of them, and the feature resulting in the maximum amount of Information Gain would be chosen to be split on.
 
-### How decision trees can grow infinitely & overfitting
+### How decision trees can grow infinitely and overfitting
 Decision trees are powerful but often overfit. A decision tree will keep splitting until no leaf nodes are impure, unless it is pruned or restricted. A tree without a depth limit of other criteria will overfit to its training data. This can be prevented via active pruning during training (max depth limits, minimum sample for splitting, etc.), or after training (by removing relatively useless branches).
 
 
@@ -253,7 +253,7 @@ This decision tree was tuned by varying the Minimum Samples Split (MSS) paramete
 > [!NOTE]
 > This methodology of hyperparameter tuning can be improved by using cross-validation, instead of the same train-test split for every hyperparameter variation; this is just for demonstration.
 
-### Via Social Media Data & Metadata
+### Via Social Media Data and Metadata
 #### Feature Selection
 All features that were considered social media data and metadata were included. A correlation heatmap was created to understand how the features interacted with each other and the label. A single feature was chosen for any two features with very high correlation.
 
@@ -288,7 +288,7 @@ This decision tree was tuned by varying the Max Depth (MD) parameter, which is t
 > [!NOTE]
 > This methodology of hyperparameter tuning can be improved by using cross-validation, instead of the same train-test split for every hyperparameter variation; this is just for demonstration.
 
-### Via Streaming Data & Metadata
+### Via Streaming Data and Metadata
 #### Feature Selection
 All features that were considered streaming data and metadata were included. A correlation heatmap was created to understand how the features interacted with each other and the label. A single feature was chosen for any two features with very high correlation.
 

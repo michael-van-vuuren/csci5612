@@ -86,7 +86,7 @@ In the following section, PCA is applied to the PCA-Ready dataset, and the 2D an
   {{< /tab >}}
 {{< /tabs >}}
 
-### Eigenvalues, Variance, & Loadings
+### Eigenvalues, Variance, and Loadings
 
 ![PCAVarianceLoadings](/images/pca/PCAVarianceLoadings.png)
 
