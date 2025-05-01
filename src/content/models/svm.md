@@ -191,6 +191,11 @@ Four SVMs were created:
 
 Every model was ran with multiple regularization parameters (C). In every case, a regularization parameter of 10 was the best. This higher regularization parameter means that the SVMs allow for less missclassifications during training at the cost of smaller margins around its hyperplanes. The reason this parameter was not pushed up even more, say to 100, is because this would likely lead to overfitted models that are extremely sensitive to noise in the training set. 
 
+An initial attempt was made to project the original dataset onto two dimensions using PCA and fit an SVM to visualize the decision boundaries. However, the first two principal components did not capture enough variance, resulting in visualizations where the points were grouped together and uninformative. To address this, three simulated examples were created to illustrate how decision boundaries might appear with different SVM kernels in a high-dimensional space.
+
+The approach for plotting decision boundaries was based on:
+https://scikit-learn.org/stable/auto_examples/svm/plot_svm_kernels.html
+
 ### SVC via Linear Kernel
 
 SVC uses one-vs-one (OvO) for multiclass classification, which, for each class pair, trains a binary classifier that predicts if a sample is in one class or the other. This is true across all possible kernel selections.
@@ -216,6 +221,12 @@ For every metric, the linear kernel SVM (C = 10) scored 0.62. It was the weakest
 {{< /tab >}}
 {{< /tabs >}}
 
+#### Example decision boundary
+
+This uses simulated 2D data points to show the linear decision boundaries formed when SVM is used with a linear kernel. Keep in mind that Scikit-learn's SVC uses a one-vs-one multiclass classification strategy, which is why some of the colored regions have very complicated shapes (like `Rap`).
+
+![DecisionBoundaryExample](/images/svm/linear-svm-ex.png)
+
 ### SVC via RBF Kernel
 
 #### Results
@@ -239,6 +250,12 @@ The RBF kernel SVM (C = 10) had the best performance overall, with an F1 Score o
 {{< /tab >}}
 {{< /tabs >}}
 
+#### Example decision boundary
+
+This uses simulated 2D data points to show the non-linear decision boundaries formed when SVM is used with an RBF kernel. Notice that the boundaries are rounded. This is why RBF kernel SVMs perform well on complicated datasets. 
+
+![DecisionBoundaryExample](/images/svm/rbf-svm-ex.png)
+
 ### SVC via Polynomial Kernel
 
 #### Results
@@ -261,6 +278,12 @@ The polynomial kernel SVM (C = 10) performed better than the linear kernel SVM, 
 ![ConfusionMatrix](/images/svm/svcpoly-conf2.png)
 {{< /tab >}}
 {{< /tabs >}}
+
+#### Example decision boundary
+
+This uses simulated 2D data points to show the non-linear decision boundaries formed when SVM is used with a polynomial kernel of degree 2. Notice that the boundaries are still rounded, but less than the RBF SVM. 
+
+![DecisionBoundaryExample](/images/svm/poly-svm-ex.png)
 
 ### LinearSVC
 

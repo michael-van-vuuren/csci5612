@@ -3,4 +3,11 @@ title: Conclusion
 type: conclusion
 ---
 
-This is the conclusion page.
+text
+
+## Questions Answered 
+![Conclusions](/images/conclusion/conclusions.png)
+
+## Future Work
+![FutureWork](/images/conclusion/future-work.png)
+
