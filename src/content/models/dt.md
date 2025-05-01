@@ -105,7 +105,7 @@ $ = \frac{2}{5} \cdot 0 + \frac{2}{5} \cdot 1 +\frac{1}{5} \cdot 0 = 0.4$
 
 ### Calculate the Information Gain
 
-$IG(D, Feature 1)$\
+$IG(D, \text{Feature 1})$\
 $ = \text{Entropy}(D) - \text{Weighted Entropy}$\
 $ = 0.971 - 0.4$\
 $ = 0.571$

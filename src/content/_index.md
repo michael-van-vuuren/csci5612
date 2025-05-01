@@ -18,9 +18,9 @@ Get started by visiting the introduction page.
   {{< card link="conclusion" title="Conclusion" icon="check-circle" subtitle="Visit here for the key outcomes and conclusions of the project." >}}
 {{< /cards >}}
 
-## This project uses data from...
+## This project used data from...
 
 ![Datasets](/datasets.png)
 
 >[!TIP]
->You can also use the tabs to navigate between sections.
+>You can use the tabs to navigate between sections.

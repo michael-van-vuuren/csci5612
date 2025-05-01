@@ -23,13 +23,13 @@ A Support Vector Machine (SVM) is a powerful linear machine learning method that
 
 [Image source](https://botpenguin.com/glossary/kernel-method)
 
-In a hard margin SVM, the algorithm seeks the hyperplane that perfectly separates the classes with the maximum margin, and allows for no misclassifications. On the other hand, a soft margin SVM relaxes this constraint, and permits some misclassifications (called slack variables) in the training data in exchange for a wider margin and better generalization. 
+In a hard margin SVM, the algorithm seeks the hyperplane that perfectly separates the classes with the maximum margin, and allows for no misclassifications. If the data clusters are close, then the margin can be really small or impossible to create. On the other hand, a soft margin SVM relaxes this constraint, and allows for some misclassified points (called slack points) in the training data in exchange for a bigger margin. In most cases, soft margin SVM is used because it is more robust.
 
 ![SVM1](/images/svm/svm-im1.png)
 
 [Image source](https://www.ibm.com/think/topics/support-vector-machine)
 
-SVMs work well on high dimensional data, so they are commonly used for text classification (which it is used for in this section), image classification, and finance. 
+SVMs work well on high dimensional data, so they are commonly used for text classification (which is covered in this section), image classification, and finance models. 
 
 ### Questions
 
@@ -336,4 +336,4 @@ This confirms the model is actually picking up meaningful genre information from
 
 ## Conclusions
 
-Support Vector Machines are reasonably effective at predict a song's genre based on its lyrics, especially with non-linear kernels. The RBF kernel performed the best, compared to the linear and polynomial kernels, which suggests that the feature space requires non-linear hyperplanes. For practical use, LinearSVC trained faster, while still obtaining decent results, which would be useful if the model's training set was regularly updated, or updated in real time. These lyric to genre models can be used in the future to tag songs based on their lyrics, which could improve other classification models. In the next section, ensemble learning is used to capture the patterns in the lyrics even better than these SVMs were able to. 
+Support Vector Machines were decent at predict a song's genre based on its lyrics, especially with non-linear kernels. The RBF kernel performed the best, compared to the linear and polynomial kernels, which suggests that the feature space requires non-linear hyperplanes. For practical use, LinearSVC trained faster, while still obtaining decent results, which would be useful if the model's training set was regularly updated, or updated in real time. These lyric to genre models can be used in the future to tag songs based on their lyrics, which could improve other classification models. In the next section, ensemble learning is used to capture the patterns in the lyrics even better than these SVMs were able to. 

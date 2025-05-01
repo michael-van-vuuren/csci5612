@@ -8,7 +8,7 @@ math: true
 ---
 
 ## Overall Goal
-The primary aim of this project is to predict whether a song is likely to be included in a playlist, using metadata and social media data—without relying on direct streaming numbers to avoid circular reasoning.
+The primary aim of this project is to predict whether a song is likely to be included in a playlist, using metadata and social media data, without relying on direct streaming numbers to avoid circular reasoning.
 
 Since many columns in the dataset relate to streaming performance and popularity, using something like Spotify streams as the target would lead to a model that just learns what it already knows. Instead, a new target variable was created to represent the *probability of playlist inclusion*, based on playlist count and reach data across platforms.
 
@@ -233,7 +233,7 @@ The accuracy also improved, rising to 0.7934, showing that the Gaussian Naive Ba
 #### Pre-Modeling Transformation
 Categorical Naive Bayes is designed for categorical input features and does not require count data like the Multinomial variant. To make the quantitative dataset compatible, each numeric column was binned into discrete categories using an adjusted Sturges' rule to determine the number of bins based on the size of the dataset.
 
-Unlike the Multinomial model, no tallying of category counts was performed—each feature retained its binned categorical value directly.
+Unlike the Multinomial model, no tallying of category counts was performed. Each feature retained its binned categorical value directly.
 
 Again, care was taken to ensure the bin distributions were roughly even so that the model could properly distinguish between categories.
 
